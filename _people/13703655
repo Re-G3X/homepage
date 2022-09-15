@@ -1,0 +1,29 @@
+
+---
+layout: profile # Não mudar
+nusp: 13703655# Também PRECISA ser o nome do arquivo, para permitir linkagem
+title: Luiza Torello Vieira
+nickname: Luiza
+picture: /assets/img/members/luizatorello.jpg
+role: Aluna de Mestrado
+email: luiza.torello@usp.br
+research_interests:
+  - Jogos
+  - Geração Procedural de Conteúdo para Jogos
+hobbies:
+  - Jogos
+  - Desenho
+  - Livros
+games:
+  - Stardew Valley
+  - Hyper Light Drifter
+  - Rogue Legacy
+github: https://github.com/luizatvieira
+lattes: http://lattes.cnpq.br/1650107308588547
+twitter: https://twitter.com/luizatorello
+linkedin: https://www.linkedin.com/in/luiza-torello-vieira-1983941b2/
+current: true # Se a pessoa está ativa ou não no grupo
+---
+Olá, tudo bem? Meu nome é Luiza e estou trabalhando com geração procedural de quests no meu projeto de mestrado. Acho muito interessante a diversidade que algoritmos de geração procedural podem agregar à diferentes tipos de jogos e por isso decidi me especializar nessa área.
+<br>Além disso, eu trabalho em uma empresa indie de jogos como programadora. Embora eu acabe com pouco tempo disponível para balancear as duas atividades, eu me divirto, e acabo aprendendo muita coisa no caminho.
+<br>Quando tenho algum tempinho livre gosto bastante de jogar e observar meus jogos favoritos e por que eu os admiro tanto. Meu objetivo principal desenvolvendo jogos é criar jogos que inspirem outros tanto quanto já fui inspirada.
