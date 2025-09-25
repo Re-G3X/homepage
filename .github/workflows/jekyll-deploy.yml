@@ -3,10 +3,8 @@ name: Deploy Jekyll site to Pages
 on:
   push:
     branches: [site]  # or your source branch name
-    paths: ['**.md']  # Only trigger when .md files change
   pull_request:
     branches: [site]  # or your source branch name
-    paths: ['**.md']  # Only trigger when .md files change
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
