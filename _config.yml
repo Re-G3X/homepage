@@ -7,7 +7,7 @@ description: >- # this means to ignore newlines until "url:"
 
 # Site Settings
 
-url: https://brenov.github.io/ # the base hostname & protocol for your site, e.g. http://example.com
+url: https://tyago-teoi.github.io/ # the base hostname & protocol for your site, e.g. http://example.com
 baseurl: "" # the subpath of your site, e.g. /blog
 permalink: /:title
 timezone: America/Sao_Paulo
