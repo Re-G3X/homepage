@@ -7,82 +7,88 @@ title: global.publications
   <h1 class="page-heading">{% t page.title %}</h1>
 
   {% assign publications = site.publications | sort: date | reverse %}
+  {% assign types = publications | map: "publication_type" | uniq %}
 
   {% include data_format.html %}
 
   {%- if publications.size > 0 -%}
-
     {%- if page.list_title -%}
       <h2 class="post-list-heading">{{ page.list_title }}</h2>
     {%- endif -%}
 
-    {%- for publication in publications -%}
+    {% for t in types %}
+      <h2 class="publication-type">{% t global.{{ t }} %}</h2>
 
-      {% unless publication.next %}
-        <h3 class="year-separator">{{ publication.date | date: '%Y' }}</h3>
-      {% else %}
-        {% capture year %}{{ publication.date | date: '%Y' }}{% endcapture %}
-        {% capture nyear %}{{ publication.next.date | date: '%Y' }}{% endcapture %}
-        {% if year != nyear %}
+      {% assign pubs_of_type = publications | where: "publication_type", t %}
+
+      {%- for publication in pubs_of_type -%}
+
+        {% unless publication.next %}
           <h3 class="year-separator">{{ publication.date | date: '%Y' }}</h3>
-        {% endif %}
-      {% endunless %}
+        {% else %}
+          {% capture year %}{{ publication.date | date: '%Y' }}{% endcapture %}
+          {% capture nyear %}{{ publication.next.date | date: '%Y' }}{% endcapture %}
+          {% if year != nyear %}
+            <h3 class="year-separator">{{ publication.date | date: '%Y' }}</h3>
+          {% endif %}
+        {% endunless %}
 
-      <ul class="publication-list">
-        <li>
-          <div>
-            <span class="publication-meta">{{ publication.date | date: date_format }} • {{ publication.author }}</span>
-            <p class="publication-title">{{ publication.title | escape }}</p>
-            <p class="keyword-list">
-              {% t global.keywords %}:
-              <span>
-                {%- for keyword in publication.keywords -%}
-                  {% if forloop.last %}
-                    {{ keyword }}
-                  {% else %}
-                    {{ keyword }},
-                  {% endif %}
-                {% endfor %}
-              </span>
-            </p>
+        <ul class="publication-list">
+          <li>
+            <div>
+              <span class="publication-meta">{{ publication.date | date: date_format }} • {{ publication.author }}</span>
+              <p class="publication-title">{{ publication.title | escape }}</p>
+              <p class="keyword-list">
+                {% t global.keywords %}:
+                <span>
+                  {%- for keyword in publication.keywords -%}
+                    {% if forloop.last %}
+                      {{ keyword }}
+                    {% else %}
+                      {{ keyword }},
+                    {% endif %}
+                  {% endfor %}
+                </span>
+              </p>
 
-            <a class="text-button" onclick="show('hidden-abstract{{forloop.index}}')">Abstract</a> •
-            {% if publication.bibtex %}
-              <a class="text-button" onclick="show('hidden-bibtex{{forloop.index}}')">BibTeX</a> •
-            {% endif %}
-            {%- if publication.link -%}
-              <a href="{{ publication.link }}" target="_blank">
-                {% if publication.preprint %}
-                  Preprint
-                {% else %}
-                  Full Paper
-                {% endif %}
-              </a>
-              {%- if publication.pdf_link -%}
-              •
+              <a class="text-button" onclick="show('hidden-abstract{{forloop.index}}')">Abstract</a> •
+              {% if publication.bibtex %}
+                <a class="text-button" onclick="show('hidden-bibtex{{forloop.index}}')">BibTeX</a> •
               {% endif %}
-            {% endif %}
-            {%- if publication.pdf_link -%}
-              <a href="{{ publication.pdf_link }}" target="_blank">PDF</a>
-            {% endif %}
+              {%- if publication.link -%}
+                <a href="{{ publication.link }}" target="_blank">
+                  {% if publication.preprint %}
+                    Preprint
+                  {% else %}
+                    Full Paper
+                  {% endif %}
+                </a>
+                {%- if publication.pdf_link -%}
+                •
+                {% endif %}
+              {% endif %}
+              {%- if publication.pdf_link -%}
+                <a href="{{ publication.pdf_link }}" target="_blank">PDF</a>
+              {% endif %}
 
-            {% if publication.abstract %}
-              <div class="publication-abstract" id="hidden-abstract{{forloop.index}}" style="display: none;">
-                <h4>Abstract</h4>
-                {{ publication.abstract }}
-              </div>
-            {% endif %}
+              {% if publication.abstract %}
+                <div class="publication-abstract" id="hidden-abstract{{forloop.index}}" style="display: none;">
+                  <h4>Abstract</h4>
+                  {{ publication.abstract }}
+                </div>
+              {% endif %}
 
-            {% if publication.bibtex %}
-              <div class="publication-bibtex" id="hidden-bibtex{{forloop.index}}" style="display: none;">
-                <h4>BibTeX • <span onclick="copy('copy{{forloop.index}}', 'text-copy{{forloop.index}}')"
-                  class="copy" id="text-copy{{forloop.index}}">Copiar</span></h4>
-                <pre id="copy{{forloop.index}}"><code>{{ publication.bibtex }}</code></pre>
-              </div>
-            {% endif %}
-          </div>
-        </li>
-      </ul>
+              {% if publication.bibtex %}
+                <div class="publication-bibtex" id="hidden-bibtex{{forloop.index}}" style="display: none;">
+                  <h4>BibTeX • <span onclick="copy('copy{{forloop.index}}', 'text-copy{{forloop.index}}')"
+                    class="copy" id="text-copy{{forloop.index}}">Copiar</span></h4>
+                  <pre id="copy{{forloop.index}}"><code>{{ publication.bibtex }}</code></pre>
+                </div>
+              {% endif %}
+            </div>
+          </li>
+        </ul>
+      {%- endfor -%}
     {%- endfor -%}
   {%- endif -%}
 

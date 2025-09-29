@@ -3,6 +3,7 @@ team: projeto_relacionado # Ver arquivo `_data/teams.yml`
 title: Título do artigo
 author: autor 1, autor 2, ..., autor n
 date: 2021-12-31 # ano-mês-dia
+publication_type: journal/conference/chapter/thesis
 abstract: Adicionar resumo do artigo.
 keywords: # Palavras-chave
   - categoria 1

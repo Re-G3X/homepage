@@ -22,6 +22,12 @@ global:
   last_updated_at: Atualizado em
   abstract: Resumo
   keywords: Palavras-chave
+  journal: Revista
+  conference: Conferência
+  chapter: Capítulo
+  thesis: Tese
+  book: Livro
+
 
 # Homepage
 homepage:

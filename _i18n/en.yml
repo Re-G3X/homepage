@@ -22,6 +22,11 @@ global:
   last_updated_at: Last updated at
   abstract: Abstract
   keywords: Keywords
+  journal: Journal
+  conference: Conference
+  chapter: Chapter
+  thesis: Thesis
+  book: Book
 
 # Homepage
 homepage:
