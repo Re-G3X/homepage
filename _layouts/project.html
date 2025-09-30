@@ -46,13 +46,19 @@ layout: default
     {%- if page.team -%}
 
       {% assign publications = site.publications | where:"team", page.team | sort: date | reverse %}
+      {% assign types = publications | map: "publication_type" | uniq %}
 
       {%- if publications.size > 0 -%}
         <div class="post-section">
           <h2 class="post-section-title p-name">{% t projects.publications %}</h2>
           <div class="post-section-content">
             <ul class="post-list">
-              {%- for publication in publications -%}
+              {% for t in types %}
+                <h2 class="publication-type">{% t global.{{ t }} %}</h2>
+              
+              {% assign pubs_of_type = publications | where: "publication_type", t %}
+
+              {%- for publication in pubs_of_type -%}
 
                 {% unless publication.next %}
                   <h4 class="year-separator">{{ publication.date | date: '%Y' }}</h4>
@@ -116,6 +122,7 @@ layout: default
                       {% endif %}
                     </div>
                   </li>
+                {%- endfor -%}
               {%- endfor -%}
             </ul>
           </div>
