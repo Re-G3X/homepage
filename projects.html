@@ -11,6 +11,7 @@ title: global.projects
   {% include data_format.html %}
 
   {%- if projects.size > 0 -%}
+    {% assign projects = site.projects | where: "locale", site.lang | sort: "order" %}
     {%- if page.list_title -%}
       <h2 class="post-list-heading">{{ page.list_title }}</h2>
     {%- endif -%}
