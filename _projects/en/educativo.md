@@ -1,6 +1,7 @@
 ---
 layout: project
 order: 2
+team: educativo
 title: Educational Games
 date: 2019-01-31
 categories: educação
