@@ -28,6 +28,14 @@ global:
   thesis: Thesis
   book: Book
 
+publication:
+  type:
+    journal: Journal
+    conference: Conference
+    chapter: Chapter
+    thesis: Thesis
+    book: Book
+
 # Homepage
 homepage:
   welcome: A group dedicated to research in Digital Games

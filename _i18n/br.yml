@@ -28,6 +28,13 @@ global:
   thesis: Tese
   book: Livro
 
+publication:
+  type:
+    journal: Revista
+    conference: Conferência
+    chapter: Capítulo
+    thesis: Tese
+    book: Livro
 
 # Homepage
 homepage:
