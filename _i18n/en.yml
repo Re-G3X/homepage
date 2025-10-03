@@ -5,8 +5,8 @@ langs:
 global:
   tagline: English
   # Main
-  title: Game Research Group
-  description: Game Research Group from ICMC.
+  title: 'Re-G3X: Research in Games, Gamification, Serious Games, and eXtended Reality'
+  description: 'Research Group in Games ICMC-USP / IGCE-UNESP.'
   # NavBar and Page Titles
   news: News
   people: People
