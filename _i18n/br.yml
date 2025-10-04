@@ -5,8 +5,8 @@ langs:
 global:
   tagline: Português Brasileiro
   # Main
-  title: Grupo de Pesquisa em Jogos
-  description: Grupo de Pesquisa em Jogos do ICMC.
+  title: 'Re-G3X: Pesquisa em Jogos, Gamificação, Jogos Sérios, e Realidade Estendida'
+  description: 'Grupo de Pesquisa em Jogos ICMC-USP / IGCE-UNESP.'
   # NavBar and Page Titles
   news: Notícias
   people: Pessoas
@@ -22,6 +22,19 @@ global:
   last_updated_at: Atualizado em
   abstract: Resumo
   keywords: Palavras-chave
+  journal: Revista
+  conference: Conferência
+  chapter: Capítulo
+  thesis: Tese
+  book: Livro
+
+publication:
+  type:
+    journal: Revista
+    conference: Conferência
+    chapter: Capítulo
+    thesis: Tese
+    book: Livro
 
 # Homepage
 homepage:

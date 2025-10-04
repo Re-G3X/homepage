@@ -6,86 +6,77 @@ title: global.publications
 <div class="home">
   <h1 class="page-heading">{% t page.title %}</h1>
 
-  {% assign publications = site.publications | sort: date | reverse %}
+  {% assign publications = site.publications | sort: "date" | reverse %}
+
+  {% comment %} Put the types in the exact order you want here {% endcomment %}
+  {% assign type_order = "journal,conference,chapter,thesis,book" | split: "," %}
 
   {% include data_format.html %}
 
   {%- if publications.size > 0 -%}
-
     {%- if page.list_title -%}
       <h2 class="post-list-heading">{{ page.list_title }}</h2>
     {%- endif -%}
 
-    {%- for publication in publications -%}
+    {% assign idx = 0 %}
+    {% for t in type_order %}
+      {% assign pubs_of_type = publications | where: "publication_type", t %}
+      {% if pubs_of_type and pubs_of_type.size > 0 %}
+        <h2 class="publication-type">{% t publication.type.{{ t }} %}</h2>
 
-      {% unless publication.next %}
-        <h3 class="year-separator">{{ publication.date | date: '%Y' }}</h3>
-      {% else %}
-        {% capture year %}{{ publication.date | date: '%Y' }}{% endcapture %}
-        {% capture nyear %}{{ publication.next.date | date: '%Y' }}{% endcapture %}
-        {% if year != nyear %}
-          <h3 class="year-separator">{{ publication.date | date: '%Y' }}</h3>
-        {% endif %}
-      {% endunless %}
+        {% assign last_year = "" %}
+        {% for publication in pubs_of_type %}
+          {% assign idx = idx | plus: 1 %}
+          {% assign year = publication.date | date: '%Y' %}
+          {% if year != last_year %}
+            <h3 class="year-separator">{{ year }}</h3>
+            {% assign last_year = year %}
+          {% endif %}
 
-      <ul class="publication-list">
-        <li>
-          <div>
-            <span class="publication-meta">{{ publication.date | date: date_format }} • {{ publication.author }}</span>
-            <p class="publication-title">{{ publication.title | escape }}</p>
-            <p class="keyword-list">
-              {% t global.keywords %}:
-              <span>
-                {%- for keyword in publication.keywords -%}
-                  {% if forloop.last %}
-                    {{ keyword }}
-                  {% else %}
-                    {{ keyword }},
-                  {% endif %}
-                {% endfor %}
-              </span>
-            </p>
+          <ul class="publication-list">
+            <li>
+              <div>
+                <span class="publication-meta">{{ publication.date | date: date_format }} • {{ publication.author }}</span>
+                <p class="publication-title">{{ publication.title | escape }}</p>
+                <p class="keyword-list">
+                  {% t global.keywords %}:
+                  <span>
+                    {%- for keyword in publication.keywords -%}
+                      {% if forloop.last %}{{ keyword }}{% else %}{{ keyword }}, {% endif %}
+                    {% endfor %}
+                  </span>
+                </p>
 
-            <a class="text-button" onclick="show('hidden-abstract{{forloop.index}}')">Abstract</a> •
-            {% if publication.bibtex %}
-              <a class="text-button" onclick="show('hidden-bibtex{{forloop.index}}')">BibTeX</a> •
-            {% endif %}
-            {%- if publication.link -%}
-              <a href="{{ publication.link }}" target="_blank">
-                {% if publication.preprint %}
-                  Preprint
-                {% else %}
-                  Full Paper
-                {% endif %}
-              </a>
-              {%- if publication.pdf_link -%}
-              •
-              {% endif %}
-            {% endif %}
-            {%- if publication.pdf_link -%}
-              <a href="{{ publication.pdf_link }}" target="_blank">PDF</a>
-            {% endif %}
+                <a class="text-button" onclick="show('hidden-abstract{{idx}}')">Abstract</a>
+                {%- if publication.bibtex -%} • <a class="text-button" onclick="show('hidden-bibtex{{idx}}')">BibTeX</a>{% endif %}
 
-            {% if publication.abstract %}
-              <div class="publication-abstract" id="hidden-abstract{{forloop.index}}" style="display: none;">
-                <h4>Abstract</h4>
-                {{ publication.abstract }}
+                {%- if publication.link -%}
+                  • <a href="{{ publication.link }}" target="_blank">
+                      {% if publication.preprint %}Preprint{% else %}Full Paper{% endif %}
+                    </a>
+                {%- endif -%}
+                {%- if publication.pdf_link -%} • <a href="{{ publication.pdf_link }}" target="_blank">PDF</a>{% endif %}
+
+                {%- if publication.abstract -%}
+                  <div class="publication-abstract" id="hidden-abstract{{idx}}" style="display:none;">
+                    <h4>Abstract</h4>
+                    {{ publication.abstract }}
+                  </div>
+                {%- endif -%}
+
+                {%- if publication.bibtex -%}
+                  <div class="publication-bibtex" id="hidden-bibtex{{idx}}" style="display:none;">
+                    <h4>BibTeX • <span onclick="copy('copy{{idx}}','text-copy{{idx}}')" class="copy" id="text-copy{{idx}}">Copiar</span></h4>
+                    <pre id="copy{{idx}}"><code>{{ publication.bibtex }}</code></pre>
+                  </div>
+                {%- endif -%}
               </div>
-            {% endif %}
-
-            {% if publication.bibtex %}
-              <div class="publication-bibtex" id="hidden-bibtex{{forloop.index}}" style="display: none;">
-                <h4>BibTeX • <span onclick="copy('copy{{forloop.index}}', 'text-copy{{forloop.index}}')"
-                  class="copy" id="text-copy{{forloop.index}}">Copiar</span></h4>
-                <pre id="copy{{forloop.index}}"><code>{{ publication.bibtex }}</code></pre>
-              </div>
-            {% endif %}
-          </div>
-        </li>
-      </ul>
-    {%- endfor -%}
+            </li>
+          </ul>
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
   {%- endif -%}
-
 </div>
 
 <script src="{{ site.baseurl_root }}/assets/js/scripts.js" type="text/javascript"></script>
