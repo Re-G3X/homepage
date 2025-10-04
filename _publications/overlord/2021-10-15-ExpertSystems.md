@@ -14,7 +14,8 @@ keywords:
 link: https://doi.org/10.1016/j.eswa.2021.115009
 bibtex: |
   @article{pereira:2021,
-  title = {Procedural generation of dungeons’ maps and locked-door missions through an evolutionary algorithm validated with players},
+  title = {Procedural generation of dungeons’ maps and 
+  locked-door missions through an evolutionary algorithm validated with players},
   journal = {Expert Systems with Applications},
   volume = {180},
   pages = {115009},
@@ -22,8 +23,10 @@ bibtex: |
   issn = {0957-4174},
   doi = {https://doi.org/10.1016/j.eswa.2021.115009},
   url = {https://www.sciencedirect.com/science/article/pii/S0957417421004504},
-  author = {Leonardo Tortoro Pereira and Paulo Victor de Souza Prado and Rafael Miranda Lopes and Claudio Fabiano Motta Toledo},
-  keywords = {Evolutionary algorithm, Procedural content generation, Level generation, Mission generation, Adaptive game content},
+  author = {Leonardo Tortoro Pereira and Paulo Victor de Souza Prado and 
+  Rafael Miranda Lopes and Claudio Fabiano Motta Toledo},
+  keywords = {Evolutionary algorithm, Procedural content generation, 
+  Level generation, Mission generation, Adaptive game content},
   }
 
 preprint: false
