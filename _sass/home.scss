@@ -284,11 +284,10 @@ input:checked + .slider .sun-moon .moon-dot {
   box-shadow: 12px 12px 0px 0px var(--card-shadow);
 }
 
-/* AJUSTE DO MASCOTE (CONTROLE) PARA MOBILE/DESKTOP */
 .mascot-area {
   position: absolute;
-  top: 50%;
-  right: -20px;
+  top: 30%;
+  right: -40px;
   transform: translateY(-50%);
   width: 140px;
   height: 140px;
@@ -296,14 +295,13 @@ input:checked + .slider .sun-moon .moon-dot {
   align-items: center;
   justify-content: center;
   z-index: 40;
-  pointer-events: none; /* Evita bloquear cliques na tela em dispositivos móveis */
+  pointer-events: none;
 }
 
 @media (min-width: 640px) {
   .mascot-area {
     width: 200px;
     height: 200px;
-    right: -10px;
   }
 }
 
@@ -311,7 +309,6 @@ input:checked + .slider .sun-moon .moon-dot {
   .mascot-area {
     width: 380px;
     height: 380px;
-    right: 2%;
     pointer-events: auto;
   }
 }
