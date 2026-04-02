@@ -2,159 +2,334 @@
 layout: default
 ---
 
-<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+{% if page.picture and page.picture != "" %} {% assign profile_img =
+page.picture | prepend: site.baseurl_root %} {% else %} {% assign profile_img =
+"/assets/img/members/icon-placeholder.png" | prepend: site.baseurl_root %} {%
+endif %}
 
-  <div class="post-content e-content" itemprop="articleBody">
-    <div class="member">
-      <span>
-        <img class="member-picture" src="{{ site.baseurl_root }}{{ page.picture }}">
-        <h2 class="member-name">
-          {{ page.title | escape }}
-          {% if page.nickname %}
-            ({{ page.nickname }})
-          {% endif %}
-        </h2>
-        {% if page.role %}
-          <h3 class="author-name">{{ page.role }}</h3>
-        {% endif %}
-        <h4><a href="mailto:{{ page.email }}">{{ page.email }}</a></h4>
-      </span>
+<style>
+  .shadow-p5 {
+    box-shadow: 10px 10px 0px 0px var(--card-shadow);
+  }
+  .sd-notch {
+    clip-path: polygon(0 0, 85% 0, 100% 15%, 100% 100%, 0 100%);
+  }
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .game-card:hover .preserve-3d {
+    transform: rotateY(180deg);
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+  .pin-gold {
+    background: linear-gradient(to bottom, #d4af37, #f1c40f);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  }
+</style>
+
+<article
+  class="relative w-full max-w-7xl mx-auto flex flex-col md:flex-row border-4 border-[var(--border-ui)] shadow-2xl overflow-hidden bg-[var(--bg-color)] mt-8 mb-20 animate-fade-in"
+>
+  <div
+    class="w-full md:w-2/5 bg-[var(--section-bg)] p-8 flex flex-col items-center justify-start relative border-r-0 md:border-r-4 border-[var(--border-ui)] halftone-tl"
+  >
+    <div class="relative z-10 w-full max-w-sm mb-10 mt-4">
+      <div
+        class="absolute inset-0 bg-[var(--gecko-pink)] skew-y-3 transform border-4 border-[var(--border-ui)]"
+      ></div>
+      <div
+        class="relative aspect-square w-full border-[10px] border-[var(--border-ui)] p-2 shadow-p5 transform -rotate-3 hover:rotate-0 transition-transform duration-500 overflow-hidden bg-[--bg-color]"
+      >
+        <img
+          src="{{ profile_img }}"
+          alt="{{ page.title }}"
+          class="w-full h-full object-cover"
+        />
+      </div>
     </div>
 
-    <div class="post-section links">
+    <div class="flex flex-wrap justify-center gap-3 w-full z-10">
       {%- if page.site -%}
-        <a href="{{ page.site }}" target="_blank">
-          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-            width="50" height="50"
-            viewBox="0 0 30 30"><path d="M 25.980469 2.9902344 A 1.0001 1.0001 0 0 0 25.869141 3 L 20 3 A 1.0001 1.0001 0 1 0 20 5 L 23.585938 5 L 13.292969 15.292969 A 1.0001 1.0001 0 1 0 14.707031 16.707031 L 25 6.4140625 L 25 10 A 1.0001 1.0001 0 1 0 27 10 L 27 4.1269531 A 1.0001 1.0001 0 0 0 25.980469 2.9902344 z M 6 7 C 4.9069372 7 4 7.9069372 4 9 L 4 24 C 4 25.093063 4.9069372 26 6 26 L 21 26 C 22.093063 26 23 25.093063 23 24 L 23 14 L 23 11.421875 L 21 13.421875 L 21 16 L 21 24 L 6 24 L 6 9 L 14 9 L 16 9 L 16.578125 9 L 18.578125 7 L 16 7 L 14 7 L 6 7 z"></path></svg>
-        </a>
-      {%- endif -%}
-      {%- if page.lattes -%}
-        <a href="{{ page.lattes }}" target="_blank">
-          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-            width="45" height="45"
-            viewBox="6 6 45 45"><path d="M 30.398438 2 L 7 2 L 7 48 L 43 48 L 43 14.601563 Z M 15 28 L 31 28 L 31 30 L 15 30 Z M 35 36 L 15 36 L 15 34 L 35 34 Z M 35 24 L 15 24 L 15 22 L 35 22 Z M 30 15 L 30 4.398438 L 40.601563 15 Z"></path></svg>
-        </a>
-      {%- endif -%}
-      {%- if page.orcid -%}
-        <a href="{{ page.orcid }}" target="_blank">
-          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-            width="50" height="50"
-            viewBox="2 2 29 29""><path d="M 16 3 C 8.8321388 3 3 8.832144 3 16 C 3 23.167856 8.8321388 29 16 29 C 23.167861 29 29 23.167856 29 16 C 29 8.832144 23.167861 3 16 3 z M 16 5 C 22.086982 5 27 9.9130223 27 16 C 27 22.086978 22.086982 27 16 27 C 9.9130183 27 5 22.086978 5 16 C 5 9.9130223 9.9130183 5 16 5 z M 11 8 A 1 1 0 0 0 11 10 A 1 1 0 0 0 11 8 z M 10 11 L 10 22 L 12 22 L 12 11 L 10 11 z M 14 11 L 14 12 L 14 22 L 18.5 22 C 21.525577 22 24 19.525577 24 16.5 C 24 13.474423 21.525577 11 18.5 11 L 14 11 z M 16 13 L 18.5 13 C 20.444423 13 22 14.555577 22 16.5 C 22 18.444423 20.444423 20 18.5 20 L 16 20 L 16 13 z"></path></svg>
-        </a>
-      {%- endif -%}
-      {%- if page.scholar -%}
-        <a href="{{ page.scholar }}" target="_blank">
-          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-            width="50" height="50"
-            viewBox="0 0 50 50"><path d="M 25 2 C 12.309534 2 2 12.309534 2 25 C 2 37.690466 12.309534 48 25 48 C 37.690466 48 48 37.690466 48 25 C 48 12.309534 37.690466 2 25 2 z M 25 4 C 36.609534 4 46 13.390466 46 25 C 46 36.609534 36.609534 46 25 46 C 13.390466 46 4 36.609534 4 25 C 4 13.390466 13.390466 4 25 4 z M 21 11 L 11 20 L 17.78125 20 C 17.80125 22.847 19.967531 25.730469 23.769531 25.730469 C 24.129531 25.730469 24.529688 25.690391 24.929688 25.650391 C 24.749688 26.100391 24.560547 26.470078 24.560547 27.080078 C 24.560547 28.230078 25.140391 28.920078 25.650391 29.580078 C 24.020391 29.690078 20.989766 29.879531 18.759766 31.269531 C 16.629766 32.559531 15.980469 34.43 15.980469 35.75 C 15.980469 38.47 18.500469 41 23.730469 41 C 29.930469 41 33.220703 37.510547 33.220703 34.060547 C 33.220703 31.530547 31.779453 30.279922 30.189453 28.919922 L 28.900391 27.890625 C 28.500391 27.570625 27.949219 27.120312 27.949219 26.320312 C 27.949219 25.510313 28.500703 24.989766 28.970703 24.509766 C 30.480703 23.309766 32 21.960234 32 19.240234 C 32 18.197234 31.756203 17.348391 31.408203 16.650391 L 35 13.570312 L 35 17.277344 C 34.405 17.623344 34 18.261 34 19 L 34 25 C 34 26.104 34.896 27 36 27 C 37.104 27 38 26.104 38 25 L 38 19 C 38 18.262 37.595 17.624344 37 17.277344 L 37 12 C 37 11.957 36.980609 11.920906 36.974609 11.878906 L 38 11 L 21 11 z M 24.269531 14.240234 C 27.269531 14.240234 28.820312 18.35 28.820312 21 C 28.820312 21.65 28.739922 22.819922 27.919922 23.669922 C 27.339922 24.259922 26.370938 24.699219 25.460938 24.699219 C 22.370938 24.699219 20.949219 20.620156 20.949219 18.160156 C 20.949219 17.210156 21.14 16.220938 21.75 15.460938 C 22.33 14.710938 23.339531 14.240234 24.269531 14.240234 z M 26.039062 30.609375 C 26.409063 30.609375 26.590859 30.610391 26.880859 30.650391 C 29.620859 32.630391 30.800781 33.620234 30.800781 35.490234 C 30.800781 37.760234 28.97 39.460938 25.5 39.460938 C 21.64 39.460938 19.160156 37.590469 19.160156 34.980469 C 19.160156 32.370469 21.459766 31.499219 22.259766 31.199219 C 23.769766 30.679219 25.719062 30.609375 26.039062 30.609375 z"></path></svg>
-        </a>
-      {%- endif -%}
-      {%- if page.researchgate -%}
-        <a href="{{ page.researchgate }}" target="_blank">
-          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-            width="50" height="50"
-            viewBox="-5 -2 37 37">
-            <defs>
-            <style type="text/css">
-             <![CDATA[
-              .fil1 {fill:#343438;fill-rule:nonzero}
-             ]]>
-            </style>
-            </defs>
-            <g id="Capa_x0020_1">
-            <metadata id="CorelCorpID_0Corel-Layer"/>
-            <path class="fil0" d="M32.04 15.97c0,8.85 -7.18,16.03 -16.02,16.03 -8.85,0 -16.02,-7.18 -16.02,-16.03 0,-8.85 7.17,-16.03 16.02,-16.03 8.84,0 16.02,7.18 16.02,16.03zm-14.79 7c-1.43,-0.28 -2.28,-1.11 -4.45,-4.33 -0.72,-1.08 -0.72,-1.08 -1.42,-1.13 -1.03,-0.07 -0.95,-0.25 -0.92,2.02 0.04,2.58 0.01,2.52 1.5,2.77 0.39,0.06 0.42,0.09 0.42,0.32 0,0.26 0,0.26 -2.62,0.28 -2.46,0.02 -2.62,0.01 -2.67,-0.14 -0.1,-0.29 0.05,-0.43 0.59,-0.53 0.61,-0.11 0.93,-0.36 1.01,-0.78 0.04,-0.16 0.05,-2.32 0.03,-4.8 -0.03,-5.21 0.03,-4.9 -0.93,-5.11 -0.6,-0.13 -0.79,-0.27 -0.71,-0.51 0.06,-0.16 0.19,-0.17 2.92,-0.22 4.06,-0.08 4.82,0.05 5.9,1.01 1.13,1.01 1.29,2.55 0.39,3.84 -0.4,0.58 -1.2,1.2 -1.82,1.43 -0.29,0.11 -0.53,0.23 -0.53,0.27 0,0.12 0.92,1.43 1.49,2.13 1.52,1.85 2.34,2.57 3.19,2.79 0.53,0.14 0.68,0.29 0.53,0.55 -0.16,0.27 -0.96,0.33 -1.9,0.14zm-3.83 -6.63c2,-0.82 2.15,-3.57 0.25,-4.38 -0.49,-0.21 -0.62,-0.22 -1.85,-0.22 -1.33,0 -1.33,0 -1.35,2.31 -0.02,1.27 -0.01,2.37 0.02,2.43 0.09,0.21 2.34,0.1 2.93,-0.14zm6.97 -2.85c-1.55,-0.29 -2.06,-1.24 -1.98,-3.68 0.04,-1.35 0.15,-1.72 0.67,-2.28 0.92,-0.99 3.2,-0.9 4.04,0.16 0.36,0.45 0.33,0.59 -0.17,0.74 -0.39,0.13 -0.39,0.13 -0.75,-0.23 -0.85,-0.82 -2.32,-0.52 -2.58,0.54 -0.13,0.47 -0.12,2.46 0.01,2.91 0.35,1.27 2.46,1.27 2.82,0 0.22,-0.81 0.17,-0.87 -0.8,-0.92 -0.47,-0.02 -0.47,-0.02 -0.47,-0.41 0,-0.38 0,-0.38 1.12,-0.41 1.45,-0.03 1.43,-0.05 1.36,1.01 -0.09,1.33 -0.45,1.97 -1.32,2.35 -0.57,0.24 -1.35,0.33 -1.95,0.22z"/>
-            <path class="fil1" d="M17.25 22.97c-1.43,-0.28 -2.28,-1.11 -4.45,-4.33 -0.72,-1.08 -0.72,-1.08 -1.42,-1.13 -1.03,-0.07 -0.95,-0.25 -0.92,2.02 0.04,2.58 0.01,2.52 1.5,2.77 0.39,0.06 0.42,0.09 0.42,0.32 0,0.26 0,0.26 -2.62,0.28 -2.46,0.02 -2.62,0.01 -2.67,-0.14 -0.1,-0.29 0.05,-0.43 0.59,-0.53 0.61,-0.11 0.93,-0.36 1.01,-0.78 0.04,-0.16 0.05,-2.32 0.03,-4.8 -0.03,-5.21 0.03,-4.9 -0.93,-5.11 -0.6,-0.13 -0.79,-0.27 -0.71,-0.51 0.06,-0.16 0.19,-0.17 2.92,-0.22 4.06,-0.08 4.82,0.05 5.9,1.01 1.13,1.01 1.29,2.55 0.39,3.84 -0.4,0.58 -1.2,1.2 -1.82,1.43 -0.29,0.11 -0.53,0.23 -0.53,0.27 0,0.12 0.92,1.43 1.49,2.13 1.52,1.85 2.34,2.57 3.19,2.79 0.53,0.14 0.68,0.29 0.53,0.55 -0.16,0.27 -0.96,0.33 -1.9,0.14zm-3.83 -6.63c2,-0.82 2.15,-3.57 0.25,-4.38 -0.49,-0.21 -0.62,-0.22 -1.85,-0.22 -1.33,0 -1.33,0 -1.35,2.31 -0.02,1.27 -0.01,2.37 0.02,2.43 0.09,0.21 2.34,0.1 2.93,-0.14zm6.97 -2.85c-1.55,-0.29 -2.06,-1.24 -1.98,-3.68 0.04,-1.35 0.15,-1.72 0.67,-2.28 0.92,-0.99 3.2,-0.9 4.04,0.16 0.36,0.45 0.33,0.59 -0.17,0.74 -0.39,0.13 -0.39,0.13 -0.75,-0.23 -0.85,-0.82 -2.32,-0.52 -2.58,0.54 -0.13,0.47 -0.12,2.46 0.01,2.91 0.35,1.27 2.46,1.27 2.82,0 0.22,-0.81 0.17,-0.87 -0.8,-0.92 -0.47,-0.02 -0.47,-0.02 -0.47,-0.41 0,-0.38 0,-0.38 1.12,-0.41 1.45,-0.03 1.43,-0.05 1.36,1.01 -0.09,1.33 -0.45,1.97 -1.32,2.35 -0.57,0.24 -1.35,0.33 -1.95,0.22zm0 0z"/>
-            </g>
-          </svg>
-        </a>
-      {%- endif -%}
-      {%- if page.linkedin -%}
-        <a href="{{ page.linkedin }}" target="_blank">
-          <svg class="icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-              width="50" height="50"
-              viewBox="0 0 30 30">    <path d="M24,4H6C4.895,4,4,4.895,4,6v18c0,1.105,0.895,2,2,2h18c1.105,0,2-0.895,2-2V6C26,4.895,25.105,4,24,4z M10.954,22h-2.95 v-9.492h2.95V22z M9.449,11.151c-0.951,0-1.72-0.771-1.72-1.72c0-0.949,0.77-1.719,1.72-1.719c0.948,0,1.719,0.771,1.719,1.719 C11.168,10.38,10.397,11.151,9.449,11.151z M22.004,22h-2.948v-4.616c0-1.101-0.02-2.517-1.533-2.517 c-1.535,0-1.771,1.199-1.771,2.437V22h-2.948v-9.492h2.83v1.297h0.04c0.394-0.746,1.356-1.533,2.791-1.533 c2.987,0,3.539,1.966,3.539,4.522V22z"></path></svg>
-        </a>
-      {%- endif -%}
-      {%- if page.facebook -%}
-        <a href="{{ page.facebook }}" target="_blank">
-          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-            width="50" height="50"
-            viewBox="0 0 50 50">    <path d="M25,3C12.85,3,3,12.85,3,25c0,11.03,8.125,20.137,18.712,21.728V30.831h-5.443v-5.783h5.443v-3.848 c0-6.371,3.104-9.168,8.399-9.168c2.536,0,3.877,0.188,4.512,0.274v5.048h-3.612c-2.248,0-3.033,2.131-3.033,4.533v3.161h6.588 l-0.894,5.783h-5.694v15.944C38.716,45.318,47,36.137,47,25C47,12.85,37.15,3,25,3z"></path></svg>
-        </a>
-      {%- endif -%}
-      {%- if page.instagram -%}
-        <a href="{{ page.instagram }}" target="_blank">
-          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-            width="50" height="50"
-            viewBox="0 0 30 30">    <path d="M 9.9980469 3 C 6.1390469 3 3 6.1419531 3 10.001953 L 3 20.001953 C 3 23.860953 6.1419531 27 10.001953 27 L 20.001953 27 C 23.860953 27 27 23.858047 27 19.998047 L 27 9.9980469 C 27 6.1390469 23.858047 3 19.998047 3 L 9.9980469 3 z M 22 7 C 22.552 7 23 7.448 23 8 C 23 8.552 22.552 9 22 9 C 21.448 9 21 8.552 21 8 C 21 7.448 21.448 7 22 7 z M 15 9 C 18.309 9 21 11.691 21 15 C 21 18.309 18.309 21 15 21 C 11.691 21 9 18.309 9 15 C 9 11.691 11.691 9 15 9 z M 15 11 A 4 4 0 0 0 11 15 A 4 4 0 0 0 15 19 A 4 4 0 0 0 19 15 A 4 4 0 0 0 15 11 z"></path></svg>
-        </a>
-      {%- endif -%}
-      {%- if page.twitter -%}
-        <a href="{{ page.twitter }}" target="_blank">
-          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-            width="50" height="50"
-            viewBox="0 0 30 30">    <path d="M28,6.937c-0.957,0.425-1.985,0.711-3.064,0.84c1.102-0.66,1.947-1.705,2.345-2.951c-1.03,0.611-2.172,1.055-3.388,1.295 c-0.973-1.037-2.359-1.685-3.893-1.685c-2.946,0-5.334,2.389-5.334,5.334c0,0.418,0.048,0.826,0.138,1.215 c-4.433-0.222-8.363-2.346-10.995-5.574C3.351,6.199,3.088,7.115,3.088,8.094c0,1.85,0.941,3.483,2.372,4.439 c-0.874-0.028-1.697-0.268-2.416-0.667c0,0.023,0,0.044,0,0.067c0,2.585,1.838,4.741,4.279,5.23 c-0.447,0.122-0.919,0.187-1.406,0.187c-0.343,0-0.678-0.034-1.003-0.095c0.679,2.119,2.649,3.662,4.983,3.705 c-1.825,1.431-4.125,2.284-6.625,2.284c-0.43,0-0.855-0.025-1.273-0.075c2.361,1.513,5.164,2.396,8.177,2.396 c9.812,0,15.176-8.128,15.176-15.177c0-0.231-0.005-0.461-0.015-0.69C26.38,8.945,27.285,8.006,28,6.937z"></path></svg>
-        </a>
-      {%- endif -%}
-      {%- if page.youtube -%}
-        <a href="{{ page.youtube }}" target="_blank">
-          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-            width="50" height="50"
-            viewBox="0 0 50 50""><path d="M 44.898438 14.5 C 44.5 12.300781 42.601563 10.699219 40.398438 10.199219 C 37.101563 9.5 31 9 24.398438 9 C 17.800781 9 11.601563 9.5 8.300781 10.199219 C 6.101563 10.699219 4.199219 12.199219 3.800781 14.5 C 3.398438 17 3 20.5 3 25 C 3 29.5 3.398438 33 3.898438 35.5 C 4.300781 37.699219 6.199219 39.300781 8.398438 39.800781 C 11.898438 40.5 17.898438 41 24.5 41 C 31.101563 41 37.101563 40.5 40.601563 39.800781 C 42.800781 39.300781 44.699219 37.800781 45.101563 35.5 C 45.5 33 46 29.398438 46.101563 25 C 45.898438 20.5 45.398438 17 44.898438 14.5 Z M 19 32 L 19 18 L 31.199219 25 Z"></path></svg>
-        </a>
-      {%- endif -%}
-      {%- if page.itchio -%}
-        <a href="{{ page.itchio }}" target="_blank">
-          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-            width="50" height="50"
-            viewBox="0 0 30 30"><path d="M 15 4 C 11.638 4 7.0549062 4.0537656 6.1289062 4.1347656 C 5.0819063 4.7557656 3.02 6.8994844 3 7.5214844 L 3 8.5507812 C 3 9.8547812 4.2182187 11 5.3242188 11 C 6.6532187 11 7.7617188 9.8987969 7.7617188 8.5917969 C 7.7617188 9.8987969 8.8292031 11 10.158203 11 C 11.487203 11 12.523437 9.8987969 12.523438 8.5917969 C 12.523438 9.8987969 13.659281 11 14.988281 11 L 15.013672 11 C 16.342672 11 17.478516 9.8987969 17.478516 8.5917969 C 17.478516 9.8987969 18.513797 11 19.841797 11 C 21.170797 11 22.240234 9.8987969 22.240234 8.5917969 C 22.240234 9.8987969 23.346781 11 24.675781 11 C 25.780781 11 27 9.8547812 27 8.5507812 L 27 7.5214844 C 26.98 6.9004844 24.918094 4.7557656 23.871094 4.1347656 C 20.617094 4.0197656 18.362 4 15 4 z M 12.484375 11.636719 C 12.357375 11.857719 12.199625 12.060281 12.015625 12.238281 C 11.513625 12.728281 10.826359 13.033203 10.068359 13.033203 C 9.3393594 13.034203 8.6381875 12.748281 8.1171875 12.238281 C 7.9351875 12.060281 7.797875 11.870437 7.671875 11.648438 C 7.545875 11.870437 7.3685469 12.059281 7.1855469 12.238281 C 6.6645469 12.748281 5.963375 13.034203 5.234375 13.033203 C 5.143375 13.033203 5.0496562 13.007469 4.9726562 12.980469 C 4.8656562 14.092469 4.8421719 14.541406 4.8261719 15.316406 L 4.8261719 15.320312 C 4.8241719 15.714313 4.8223125 16.038281 4.8203125 16.488281 C 4.8413125 18.822281 4.5896094 24.052891 5.8496094 25.337891 C 7.8026094 25.791891 11.395 25.999 15 26 C 18.605 25.999 22.197391 25.790937 24.150391 25.335938 C 25.410391 24.050937 25.158688 18.819328 25.179688 16.486328 C 25.177688 16.036328 25.175828 15.714313 25.173828 15.320312 L 25.173828 15.316406 C 25.157828 14.541406 25.091375 14.092469 24.984375 12.980469 C 24.907375 13.006469 24.811703 13.03125 24.720703 13.03125 C 23.991703 13.03225 23.290531 12.748281 22.769531 12.238281 C 22.587531 12.060281 22.412156 11.870437 22.285156 11.648438 L 22.283203 11.648438 C 22.156203 11.870437 22.018891 12.060281 21.837891 12.238281 C 21.316891 12.748281 20.615719 13.033203 19.886719 13.033203 C 19.128719 13.033203 18.441453 12.729281 17.939453 12.238281 C 17.756453 12.060281 17.600656 11.857719 17.472656 11.636719 C 17.346656 11.857719 17.190766 12.060281 17.009766 12.238281 C 16.488766 12.748281 15.787594 13.033203 15.058594 13.033203 C 15.032594 13.033203 15.004516 13.03225 14.978516 13.03125 C 14.952516 13.03225 14.925437 13.033203 14.898438 13.033203 C 14.169438 13.034203 13.468266 12.748281 12.947266 12.238281 C 12.765266 12.060281 12.609375 11.857719 12.484375 11.636719 z M 10.966797 14.644531 L 10.966797 14.646484 C 11.678797 14.647484 12.311703 14.646953 13.095703 15.501953 C 13.712079 15.437019 14.355654 15.403365 15 15.404297 C 15 15.404297 15.001953 15.404297 15.001953 15.404297 C 15.646297 15.403365 16.289875 15.437019 16.90625 15.501953 C 17.69025 14.646953 18.321203 14.647484 19.033203 14.646484 L 19.035156 14.646484 L 19.035156 14.644531 C 19.371156 14.644531 20.717297 14.644344 21.654297 17.277344 L 22.660156 20.890625 C 23.406156 23.577625 22.421359 23.642531 21.193359 23.644531 C 19.371359 23.576531 18.363281 22.254641 18.363281 20.931641 C 17.354281 21.096641 16.178953 21.179688 15.001953 21.179688 C 13.824953 21.179688 12.646672 21.096641 11.638672 20.931641 C 11.638672 22.254641 10.630594 23.576531 8.8085938 23.644531 C 7.5795937 23.642531 6.5938437 23.577625 7.3398438 20.890625 L 8.3476562 17.277344 C 9.2846562 14.644344 10.629797 14.644531 10.966797 14.644531 z M 15 16.632812 C 14.999 16.634812 13.374984 18.12625 13.083984 18.65625 L 14.146484 18.613281 L 14.146484 19.539062 C 14.146484 19.582062 14.574 19.566875 15 19.546875 C 15.427 19.566875 15.853516 19.582062 15.853516 19.539062 L 15.853516 18.613281 L 16.916016 18.65625 C 16.625016 18.12525 15 16.632812 15 16.632812 z"></path></svg>
-        </a>
+      <a
+        href="{{ page.site }}"
+        target="_blank"
+        class="bg-[var(--bg-color)] border-2 border-[var(--border-ui)] p-2 text-[var(--text-color)] hover:bg-[var(--gecko-blue)] hover:text-white transition-all shadow-[4px_4px_0px_0px_var(--card-shadow)]"
+        title="Site"
+      >
+        <svg class="w-5 h-5 fill-current" viewBox="0 0 30 30">
+          <path
+            d="M 25.980469 2.9902344 A 1.0001 1.0001 0 0 0 25.869141 3 L 20 3 A 1.0001 1.0001 0 1 0 20 5 L 23.585938 5 L 13.292969 15.292969 A 1.0001 1.0001 0 1 0 14.707031 16.707031 L 25 6.4140625 L 25 10 A 1.0001 1.0001 0 1 0 27 10 L 27 4.1269531 A 1.0001 1.0001 0 0 0 25.980469 2.9902344 z M 6 7 C 4.9069372 7 4 7.9069372 4 9 L 4 24 C 4 25.093063 4.9069372 26 6 26 L 21 26 C 22.093063 26 23 25.093063 23 24 L 23 14 L 23 11.421875 L 21 13.421875 L 21 16 L 21 24 L 6 24 L 6 9 L 14 9 L 16 9 L 16.578125 9 L 18.578125 7 L 16 7 L 14 7 L 6 7 z"
+          ></path>
+        </svg>
+      </a>
+      {%- endif -%} {%- if page.lattes -%}
+      <a
+        href="{{ page.lattes }}"
+        target="_blank"
+        class="bg-[var(--bg-color)] border-2 border-[var(--border-ui)] p-2 text-[var(--text-color)] hover:bg-[var(--gecko-green)] hover:text-black transition-all shadow-[4px_4px_0px_0px_var(--card-shadow)]"
+        title="Lattes"
+      >
+        <svg class="w-5 h-5 fill-current" viewBox="6 6 45 45">
+          <path
+            d="M 30.398438 2 L 7 2 L 7 48 L 43 48 L 43 14.601563 Z M 15 28 L 31 28 L 31 30 L 15 30 Z M 35 36 L 15 36 L 15 34 L 35 34 Z M 35 24 L 15 24 L 15 22 L 35 22 Z M 30 15 L 30 4.398438 L 40.601563 15 Z"
+          ></path>
+        </svg>
+      </a>
+      {%- endif -%} {%- if page.orcid -%}
+      <a
+        href="{{ page.orcid }}"
+        target="_blank"
+        class="bg-[var(--bg-color)] border-2 border-[var(--border-ui)] p-2 text-[var(--text-color)] hover:bg-[var(--gecko-green)] hover:text-black transition-all shadow-[4px_4px_0px_0px_var(--card-shadow)]"
+        title="ORCID"
+      >
+        <svg class="w-5 h-5 fill-current" viewBox="2 2 29 29">
+          <path
+            d="M 16 3 C 8.8321388 3 3 8.832144 3 16 C 3 23.167856 8.8321388 29 16 29 C 23.167861 29 29 23.167856 29 16 C 29 8.832144 23.167861 3 16 3 z M 16 5 C 22.086982 5 27 9.9130223 27 16 C 27 22.086978 22.086982 27 16 27 C 9.9130183 27 5 22.086978 5 16 C 5 9.9130223 9.9130183 5 16 5 z M 11 8 A 1 1 0 0 0 11 10 A 1 1 0 0 0 11 8 z M 10 11 L 10 22 L 12 22 L 12 11 L 10 11 z M 14 11 L 14 12 L 14 22 L 18.5 22 C 21.525577 22 24 19.525577 24 16.5 C 24 13.474423 21.525577 11 18.5 11 L 14 11 z M 16 13 L 18.5 13 C 20.444423 13 22 14.555577 22 16.5 C 22 18.444423 20.444423 20 18.5 20 L 16 20 L 16 13 z"
+          ></path>
+        </svg>
+      </a>
+      {%- endif -%} {%- if page.linkedin -%}
+      <a
+        href="{{ page.linkedin }}"
+        target="_blank"
+        class="bg-[var(--bg-color)] border-2 border-[var(--border-ui)] p-2 text-[var(--text-color)] hover:bg-[#0077b5] hover:text-white transition-all shadow-[4px_4px_0px_0px_var(--card-shadow)]"
+        title="LinkedIn"
+      >
+        <svg class="w-5 h-5 fill-current" viewBox="0 0 30 30">
+          <path
+            d="M24,4H6C4.895,4,4,4.895,4,6v18c0,1.105,0.895,2,2,2h18c1.105,0,2-0.895,2-2V6C26,4.895,25.105,4,24,4z M10.954,22h-2.95 v-9.492h2.95V22z M9.449,11.151c-0.951,0-1.72-0.771-1.72-1.72c0-0.949,0.77-1.719,1.72-1.719c0.948,0,1.719,0.771,1.719,1.719 C11.168,10.38,10.397,11.151,9.449,11.151z M22.004,22h-2.948v-4.616c0-1.101-0.02-2.517-1.533-2.517 c-1.535,0-1.771,1.199-1.771,2.437V22h-2.948v-9.492h2.83v1.297h0.04c0.394-0.746,1.356-1.533,2.791-1.533 c2.987,0,3.539,1.966,3.539,4.522V22z"
+          ></path>
+        </svg>
+      </a>
       {%- endif -%}
     </div>
-
-
-    <div class="post-section">
-      <h2 class="post-section-title p-name">{% t profile.about %}</h2>
-      {{ content }}
-    </div>
-
-
-    {%- if page.research_interests.size > 0 -%}
-      <div class="post-section">
-        <h2 class="post-section-title p-name">{% t profile.research_interests %}</h2>
-        <ul>
-          {%- for research_interest in page.research_interests -%}
-            <li>{{ research_interest }}</li>
-          {%- endfor -%}
-        </ul>
-      </div>
-    {% endif %}
-
-
-    {%- if page.hobbies.size > 0 -%}
-      <div class="post-section">
-        <h2 class="post-section-title p-name">{% t profile.hobbies %}</h2>
-        <ul>
-          {%- for hobby in page.hobbies -%}
-            <li>{{ hobby }}</li>
-          {%- endfor -%}
-        </ul>
-      </div>
-    {% endif %}
-
-
-    {%- if page.games.size > 0 -%}
-      <div class="post-section">
-        <h2 class="post-section-title p-name">{% t profile.games %}</h2>
-        <ul>
-          {%- for game in page.games -%}
-            <li>{{ game }}</li>
-          {%- endfor -%}
-        </ul>
-      </div>
-    {% endif %}
   </div>
 
+  <div
+    class="w-full md:w-3/5 p-8 md:p-12 bg-[var(--bg-color)] relative flex flex-col halftone-br"
+  >
+    <div class="mb-10 relative z-10">
+      <div
+        class="bg-[var(--gecko-green)] px-6 py-2 skew-x-[-12deg] inline-block mb-4 border-4 border-[var(--border-ui)] shadow-[6px_6px_0px_0px_var(--gecko-blue)]"
+      >
+        <h1
+          class="font-black italic text-4xl md:text-5xl skew-x-[12deg] text-[#0d0d0d] p5-font tracking-tighter"
+        >
+          {{ page.title | escape }} {% if page.nickname %} ({{ page.nickname }})
+          {% endif %}
+        </h1>
+      </div>
+
+      <div class="relative z-10 inline-block mb-6">
+        <div
+          class="absolute inset-0 bg-[var(--gecko-blue)] skew-x-[-12deg] -translate-x-1 translate-y-1"
+        ></div>
+        <div
+          class="relative bg-[var(--gecko-blue)] border-2 border-[var(--border-ui)] px-4 py-1.5 skew-x-[-12deg]"
+        >
+          <p
+            class="text-xl font-black text-white italic p5-font uppercase skew-x-[12deg] tracking-tight"
+          >
+            {{ page.role }}
+          </p>
+        </div>
+      </div>
+
+      {% if page.email %}
+      <div class="block mb-8">
+        <a
+          href="mailto:{{ page.email }}"
+          class="bg-[var(--section-bg)] border-2 border-[var(--border-ui)] px-4 py-2 font-bold text-sm tracking-widest uppercase hover:bg-[var(--gecko-green)] hover:text-black transition-all shadow-sm p5-font inline-flex items-center gap-2"
+        >
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            ></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          {{ page.email }}
+        </a>
+      </div>
+      {% endif %}
+
+      <div
+        class="text-lg leading-relaxed font-bold italic opacity-80 border-l-4 border-[var(--gecko-green)] pl-4 py-2 text-[var(--text-color)] mb-8"
+      >
+        {{ content }}
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10 relative z-10">
+      {%- if page.research_interests.size > 0 -%}
+      <div
+        class="section-box p-6 halftone-tl bg-[var(--section-bg)] border-2 border-[var(--border-ui)] shadow-lg"
+      >
+        <h2
+          class="text-xl mb-4 p5-font border-b-4 border-[var(--gecko-blue)] pb-2 relative z-10 text-[var(--text-color)]"
+        >
+          {% t profile.research_interests %}
+        </h2>
+        <ul
+          class="list-disc list-inside space-y-2 text-[var(--text-color)] relative z-10 font-medium opacity-90"
+        >
+          {%- for interest in page.research_interests -%}
+          <li>{{ interest }}</li>
+          {%- endfor -%}
+        </ul>
+      </div>
+      {% endif %} {%- if page.hobbies.size > 0 -%}
+      <div
+        class="section-box p-6 halftone-tl bg-[var(--section-bg)] border-2 border-[var(--border-ui)] shadow-lg"
+      >
+        <h2
+          class="text-xl mb-4 p5-font border-b-4 border-[var(--gecko-green)] pb-2 relative z-10 text-[var(--text-color)]"
+        >
+          {% t profile.hobbies %}
+        </h2>
+        <ul
+          class="list-disc list-inside space-y-2 text-[var(--text-color)] relative z-10 font-medium opacity-90"
+        >
+          {%- for hobby in page.hobbies -%}
+          <li>{{ hobby }}</li>
+          {%- endfor -%}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+
+    {% if page.games.size > 0 %}
+    <div class="mt-auto relative z-10">
+      <div class="flex items-center gap-3 mb-8">
+        <div
+          class="bg-white p-2 shadow-[4px_4px_0px_0px_var(--card-shadow)] border-2 border-black flex items-center justify-center"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            class="text-black"
+          >
+            <rect width="20" height="12" x="2" y="6" rx="2" />
+            <line x1="6" x2="10" y1="12" y2="12" />
+            <line x1="8" x2="8" y1="10" y2="14" />
+          </svg>
+        </div>
+        <h4
+          class="font-black italic text-2xl tracking-tight border-b-4 border-[var(--gecko-green)] pb-1 p5-font text-[var(--text-color)]"
+        >
+          {% t profile.games %}
+        </h4>
+      </div>
+
+      <div
+        class="section-box p-6 bg-[var(--section-bg)]/50 border-2 border-[var(--border-ui)] shadow-xl overflow-hidden halftone-br flex flex-wrap gap-6 justify-around items-center"
+      >
+        {% for game in page.games %} {%- assign is_even = forloop.index |
+        modulo: 2 -%} {%- capture rotation -%}{% if is_even == 0 %}-1.5deg{%
+        else %}1.5deg{% endif %}{%- endcapture -%}
+
+        <div
+          class="game-card group/card relative w-full aspect-[2/3] max-w-[130px] perspective-1000 shrink-0"
+          style="--card-rotate: {{ rotation }}; transform: rotate(var(--card-rotate));"
+        >
+          <div class="preserve-3d relative w-full h-full">
+            <div
+              class="absolute inset-0 backface-hidden bg-zinc-900 border-2 border-white/10 overflow-hidden flex flex-col p-1.5 sd-notch"
+            >
+              <div
+                class="flex-grow bg-zinc-950 flex flex-col border border-[var(--gecko-green)] shadow-sm"
+              >
+                <div
+                  class="h-28 w-full flex flex-col items-center justify-center bg-zinc-950 p-2 overflow-hidden relative"
+                >
+                  <div
+                    class="absolute inset-0 opacity-10"
+                    style="
+                      background-image: repeating-linear-gradient(
+                        45deg,
+                        var(--gecko-blue) 0,
+                        var(--gecko-blue) 1px,
+                        transparent 0,
+                        transparent 10px
+                      );
+                    "
+                  ></div>
+                  <svg
+                    class="text-[var(--gecko-blue)] relative z-10"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="28"
+                    height="28"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect width="20" height="12" x="2" y="6" rx="2" />
+                    <line x1="6" x2="10" y1="12" y2="12" />
+                    <line x1="8" x2="8" y1="10" y2="14" />
+                  </svg>
+                  <span
+                    class="text-[7px] font-black uppercase text-[var(--gecko-blue)] p5-font relative z-10"
+                    >Game Data</span
+                  >
+                </div>
+                <div
+                  class="bg-black p-1 mt-auto border-t border-[var(--gecko-green)]/30"
+                >
+                  <p
+                    class="text-[7px] font-black uppercase italic p5-font text-[var(--gecko-green)] truncate"
+                  >
+                    {{ game | escape }}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="absolute inset-0 backface-hidden rotate-y-180 bg-zinc-900 border-2 border-white/10 flex flex-col p-1 sd-notch"
+            >
+              <div class="flex justify-end pr-2 mt-2 gap-0.5">
+                <div class="w-1 h-5 pin-gold rounded-t-sm"></div>
+                <div class="w-1 h-5 pin-gold rounded-t-sm"></div>
+                <div class="w-1 h-3 pin-gold rounded-t-sm mt-2"></div>
+              </div>
+              <div class="mt-auto p-2 flex flex-col items-center text-center">
+                <div
+                  class="bg-[var(--gecko-blue)] text-white font-black text-[10px] px-2 py-0.5 skew-neg-12 mb-1 p5-font"
+                >
+                  RE-G3X
+                </div>
+                <h5
+                  class="font-black italic text-[7px] leading-tight text-[var(--gecko-green)] p5-font"
+                >
+                  {{ game | escape }}
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
 </article>

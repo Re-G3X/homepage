@@ -2,22 +2,20 @@
 
 // Import fonts.
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 .montserrat {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
-
-
 
 // Define default fonts.
 
-$base-font-family: montserrat, "Segoe UI", Helvetica, Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$base-font-family: montserrat, "Segoe UI", Helvetica, Arial, sans-serif,
+  "Segoe UI Emoji", "Segoe UI Symbol" !default;
 $base-font-size: 16px !default;
 $base-font-weight: 400 !default;
 $small-font-size: $base-font-size * 0.875 !default;
 $base-line-height: 1.5 !default;
 $homepage-font-size: $base-font-size * 3 !default;
-
 
 // Define default colors.
 
@@ -26,10 +24,10 @@ $green-color: #4dcd98;
 $white-color: #ffffff;
 $gray-color: #343438;
 
-$orange-color-a8: rgba($orange-color, .8);
-$green-color-a8: rgba($green-color, .8);
-$white-color-a8: rgba($white-color, .8);
-$gray-color-a8: rgba($gray-color, .8);
+$orange-color-a8: rgba($orange-color, 0.8);
+$green-color-a8: rgba($green-color, 0.8);
+$white-color-a8: rgba($white-color, 0.8);
+$gray-color-a8: rgba($gray-color, 0.8);
 
 $gray-color-light: lighten($gray-color, 40%) !default;
 
@@ -39,13 +37,9 @@ $background-color: lighten($gray-color, 10%) !default;
 
 $code-bg-color: darken($gray-color, 5%) !default;
 
-
-
 // Define default of tables.
 
 $table-text-align: left !default;
-
-
 
 // Define the width of the content area.
 
@@ -60,8 +54,6 @@ $homepage-background: 350px !default;
 $media-size: 500px !default;
 $person-picture: 150px !default;
 
-
-
 // Define media queries.
 
 @mixin media-query($device) {
@@ -74,12 +66,6 @@ $person-picture: 150px !default;
   font-size: $base-font-size * $ratio;
 }
 
-
-
 // Import partials.
 
-@import
-  "theme/base",
-  "theme/layout",
-  "theme/syntax-highlighting"
-;
+@import "theme/base", "theme/layout", "theme/syntax-highlighting";

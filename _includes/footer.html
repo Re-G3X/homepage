@@ -1,29 +1,74 @@
-<footer class="site-footer h-card">
-
-  <data class="u-url" href="{{ site.baseurl }}"></data>
-
-  <div class="wrapper">
-
-    <div class="footer-col-wrapper">
-
-      <div class="footer-col">
-        <ul class="instituition-list">
-          <li class="p-name footer-text">© 2022 {% t global.title %}</li>
-          <li class="p-name footer-text">
-            <a href="https://www.icmc.usp.br/" target="_blank">Instituto de Ciências Matemáticas e de Computação (ICMC)</a>
-          </li>
-          <li class="p-name footer-text">
-            <a href="https://www5.usp.br/" target="_blank">Universidade de São Paulo (USP)</a>
-          </li>
-        </ul>
+<footer
+  class="border-t-4 border-[var(--gecko-blue)]/10 transition-colors w-full"
+>
+  <div
+    class="max-w-7xl mx-auto px-4 md:px-8 pt-12 pb-16 flex flex-col md:flex-row justify-between items-center md:items-start gap-10"
+  >
+    <div class="flex flex-col items-center md:items-start gap-3">
+      <div
+        class="p5-font text-xs tracking-[0.5em] opacity-40 uppercase text-center md:text-left"
+      >
+        © {{ 'now' | date: "%Y" }} {% t global.title %}
       </div>
-
-      <div class="footer-col host-text">
-        <p class="footer-text">{% t global.host %}</p>
+      <div
+        class="text-sm opacity-60 font-medium space-y-1 text-center md:text-left"
+      >
+        <p>
+          <a
+            href="https://www.icmc.usp.br/"
+            target="_blank"
+            class="hover:text-[var(--gecko-green)] transition-colors"
+            >Instituto de Ciências Matemáticas e de Computação (ICMC)</a
+          >
+        </p>
+        <p>
+          <a
+            href="https://www5.usp.br/"
+            target="_blank"
+            class="hover:text-[var(--gecko-green)] transition-colors"
+            >Universidade de São Paulo (USP)</a
+          >
+        </p>
+        <p class="text-xs pt-2">{% t global.host %}</p>
       </div>
-
     </div>
 
+    <div class="flex gap-8 mt-4 md:mt-0">
+      <div
+        class="w-12 h-4 bg-[var(--gecko-green)] skew-x-[-30deg] border-2 border-[var(--border-ui)] transition-colors"
+      ></div>
+      <div
+        class="w-12 h-4 bg-[var(--gecko-pink)] skew-x-[-30deg] border-2 border-[var(--border-ui)] transition-colors"
+      ></div>
+      <div
+        class="w-12 h-4 bg-[var(--gecko-blue)] skew-x-[-30deg] border-2 border-[var(--border-ui)] transition-colors"
+      ></div>
+    </div>
   </div>
-
 </footer>
+
+<script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    const isCurrentlyDark = html.classList.contains("dark");
+    const newTheme = isCurrentlyDark ? "light" : "dark";
+
+    html.classList.remove("dark", "light");
+    html.classList.add(newTheme);
+
+    localStorage.setItem("theme", newTheme);
+
+    document.querySelectorAll(".theme-checkbox").forEach((cb) => {
+      cb.checked = newTheme === "dark";
+    });
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    const isDark = savedTheme === "dark";
+
+    document.querySelectorAll(".theme-checkbox").forEach((cb) => {
+      cb.checked = isDark;
+    });
+  });
+</script>

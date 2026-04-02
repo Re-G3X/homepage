@@ -1,83 +1,513 @@
 ---
 layout: default
 ishome: true
-image_sliders: home_slider
 ---
 
-<div class="background">
-  <div class="gray-filter">
-    <span class="welcome">{% t homepage.welcome %}</span>
-  </div>
-</div>
-
-
-
-<div class="slider-wrapper">
-  {% include slider.html selector="home_slider" %}
-</div>
-
-
-
-<div class="wrapper">
-
-  <div class="home-section about">
-
-    <h1 class="home-title">{% t homepage.about %}</h1>
-
-    <h3>{% tf short_about.html %}</h3>
-
-  </div>
-
-
-
-  <div class="home-section news">
-
-    <h1 class="home-title">{% t homepage.recent_news %}</h1>
-
-    {% assign news = site.news | where: "locale", site.lang | sort: date | reverse %}
-
-    {% assign recent_news = "" | split: "/" %}
-  	{% for post in news limit: 5 %}
-  		{% assign recent_news = recent_news | push: post %}
-  	{% endfor %}
-
-    {% include data_format.html %}
-
-    {%- if recent_news.size > 0 -%}
-      <ul class="news-list">
-        {%- for post in recent_news -%}
-        <li>
-          <h3>
-            {% if post.mdate %}
-              <span class="post-meta">{% t global.last_updated_at %}: {{ post.mdate | date: date_format }}</span>
-            {% else %}
-              <span class="post-meta">{% t global.published_at %}: {{ post.date | date: date_format }}</span>
-            {% endif %}
-            <a class="post-link" href="{{ post.url | relative_url }}">
-              {{ post.title | escape }}
-            </a>
-          </h3>
-        </li>
-        {%- endfor -%}
-      </ul>
-    {% endif %}
-
-  </div>
-
-
-
-  <div class="home-section support">
-
-    <h1 class="home-title">{% t homepage.support %}</h1>
-
-    <div class="instituitions">
-
-      <a href="https://www5.usp.br/" target="_blank"><img class="institution institution-left" src="{{ site.baseurl_root }}/assets/img/support/usp-logo.png" alt=""></a>
-      <a href="https://www.icmc.usp.br/" target="_blank"><img class="institution institution-right" src="{{ site.baseurl_root }}/assets/img/support/icmc-logo.png" alt=""></a>
-      <span class="stretch"></span>
-
+<header class="relative w-full">
+  <div
+    class="flex flex-col items-start w-full relative z-10 pl-2 sm:pl-6 md:pl-10 lg:pl-12"
+  >
+    <div class="relative z-10 group">
+      <div
+        class="absolute -inset-1 md:-inset-2 bg-[var(--gecko-pink)] skew-x-[-12deg] -translate-x-2 translate-y-2 md:-translate-x-3 md:translate-y-3 opacity-90"
+      ></div>
+      <div
+        class="relative bg-[var(--gecko-green)] px-6 py-2 sm:px-10 sm:py-4 md:px-14 md:py-6 skew-x-[-12deg] border-4 border-[var(--border-ui)] inline-block text-[#0d0d0d] title-font shadow-2xl overflow-hidden transition-colors duration-400"
+      >
+        <h1
+          class="text-5xl sm:text-7xl md:text-8xl xl:text-9xl tracking-tighter skew-x-[12deg] leading-none relative z-10"
+        >
+          RE-G3X
+        </h1>
+      </div>
     </div>
 
+    <div
+      class="relative z-20 mt-3 md:mt-4 ml-4 sm:ml-8 md:ml-12 inline-block max-w-[80%] sm:max-w-max"
+    >
+      <div
+        class="bg-[var(--section-bg)] border-4 border-[var(--border-ui)] px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 skew-x-[12deg] shadow-2xl relative overflow-hidden halftone-tl transition-colors duration-400"
+      >
+        <h2
+          class="text-[11px] sm:text-base md:text-2xl lg:text-3xl font-bold tracking-tight skew-x-[-12deg] leading-tight title-font relative z-10 text-left whitespace-nowrap uppercase"
+          style="font-style: normal"
+        >
+          {% t homepage.welcome %}
+        </h2>
+      </div>
+    </div>
+
+    <div
+      class="relative z-30 mt-3 md:mt-4 ml-8 sm:ml-14 md:ml-20 inline-block max-w-[75%] sm:max-w-max"
+    >
+      <div
+        class="bg-[var(--banner-bg)] text-[var(--banner-text)] px-3 py-1.5 sm:px-5 sm:py-2 md:px-6 md:py-3 font-bold text-[7px] sm:text-[10px] md:text-xs inline-block skew-x-[-6deg] border-[var(--border-ui)] uppercase tracking-[0.1em] sm:tracking-[0.2em] p5-font shadow-lg transition-colors duration-400"
+      >
+        <span class="inline-block skew-x-[6deg] whitespace-nowrap"
+          >Um grupo dedicado à pesquisa em Jogos Digitais</span
+        >
+      </div>
+    </div>
   </div>
 
-</div>
+  <div class="mascot-area">
+    <div
+      class="absolute inset-0 bg-[var(--gecko-green)]/10 rounded-full blur-3xl scale-125 transition-colors"
+    ></div>
+    <div class="joystick-wrapper center-mascot">
+      <div class="joystick">
+        <div class="animations">
+          <aside class="left-hand">
+            <div class="controler">
+              <div class="btn left"></div>
+              <div class="btn top"></div>
+              <div class="btn right"></div>
+              <div class="btn bottom"></div>
+            </div>
+          </aside>
+          <div class="body-control">
+            <div class="btn"></div>
+            <div class="btn"></div>
+          </div>
+          <aside class="right-hand">
+            <div class="controler">
+              <div class="actions group1">
+                <div class="action-btn green"></div>
+                <div class="action-btn blue"></div>
+              </div>
+              <div class="actions group2">
+                <div class="action-btn yellow"></div>
+                <div class="action-btn pink"></div>
+              </div>
+            </div>
+          </aside>
+          <div class="l1 backside-buttons"><div class="btn"></div></div>
+          <div class="r1 backside-buttons"><div class="btn"></div></div>
+          <div class="stroke-base"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="grid grid-cols-1 lg:grid-cols-12 gap-16 mt-16 mb-16 relative z-10">
+  <section class="lg:col-span-7 animate-fade-in">
+    <div class="relative group">
+      <div
+        class="absolute inset-0 bg-[var(--gecko-blue)] skew-y-1 transform translate-x-4 translate-y-4 border-4 border-[var(--border-ui)] opacity-80"
+      ></div>
+      <div
+        class="relative section-box p-8 md:p-14 overflow-hidden halftone-tl halftone-br transition-colors duration-400"
+      >
+        <h2
+          class="text-4xl md:text-6xl mb-12 title-font text-[var(--text-color)] border-b-4 border-solid border-[var(--gecko-green)] pb-3"
+          id="aboutTitle"
+        >
+          {% t homepage.about %}
+        </h2>
+        <div
+          class="space-y-6 text-xl leading-relaxed font-medium opacity-90 relative z-10 text-[var(--text-color)]"
+        >
+          {% tf short_about.html %}
+        </div>
+        <div class="mt-12 flex justify-end">
+          <a
+            href="{{ '/about' | relative_url }}"
+            class="bg-[var(--gecko-green)] text-[#0d0d0d] px-10 py-3 p5-font font-black skew-x-[-12deg] hover:scale-110 transition-transform border-4 border-[var(--border-ui)] shadow-lg transition-colors"
+          >
+            <span class="inline-block skew-x-[12deg]">LER MAIS</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lg:col-span-5 animate-fade-in">
+    <div
+      class="section-box p-8 overflow-hidden halftone-tl halftone-br transition-colors duration-400"
+    >
+      <h2
+        class="text-3xl mb-12 p5-font border-b-4 border-[var(--gecko-pink)] pb-3 relative z-10"
+      >
+        {% t homepage.recent_news %}
+      </h2>
+
+      {% assign recent_news = site.news | where: "locale", site.lang | sort:
+      "date" | reverse | limit: 5 %}
+
+      <ul class="space-y-8 relative z-10">
+        {% for post in recent_news %}
+        <li class="group cursor-pointer">
+          <a
+            href="{{ post.url | relative_url }}"
+            class="block text-[var(--text-color)]"
+          >
+            <div class="news-date-container mb-3">
+              <span class="news-date-text text-[#0d0d0d]"
+                >{{ post.date | date: "%d/%m/%Y" }}</span
+              >
+            </div>
+            <h3
+              class="text-2xl font-bold group-hover:text-[var(--gecko-green)] transition-all duration-300"
+            >
+              {{ post.title | escape }}
+            </h3>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+</main>
+
+<section class="mb-32 animate-fade-in relative z-20">
+  <div class="flex items-center gap-4 mb-8 pl-2 sm:pl-6 md:pl-10 lg:pl-12">
+    <div class="relative z-10 group inline-block">
+      <div
+        class="absolute -inset-1 md:-inset-2 bg-[var(--gecko-blue)] skew-x-[-12deg] -translate-x-2 translate-y-2 md:-translate-x-3 md:translate-y-3 opacity-90"
+      ></div>
+      <div
+        class="relative bg-[var(--gecko-green)] px-6 py-2 sm:px-8 sm:py-3 md:px-12 md:py-4 skew-x-[-12deg] border-4 border-[#0d0d0d] dark:border-[#fdfdfd] inline-block text-[#0d0d0d] title-font shadow-2xl overflow-hidden transition-colors duration-400"
+      >
+        <h2
+          class="text-4xl sm:text-5xl md:text-6xl tracking-tighter skew-x-[12deg] leading-none relative z-10 font-black"
+        >
+          {% t global.projects %}
+        </h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative group">
+    <button
+      onclick="arcadeNav('left')"
+      class="absolute left-[-15px] md:left-[-35px] top-1/2 -translate-y-1/2 z-30 bg-[var(--gecko-green)] border-4 border-[var(--border-ui)] p-3 md:p-4 skew-x-[-10deg] hover:scale-110 transition-transform shadow-lg active:translate-y-[-45%]"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="black"
+        stroke-width="4"
+        stroke-linecap="square"
+        stroke-linejoin="round"
+        class="md:w-8 md:h-8"
+      >
+        <path d="m15 18-6-6 6-6" />
+      </svg>
+    </button>
+    <button
+      onclick="arcadeNav('right')"
+      class="absolute right-[-15px] md:right-[-35px] top-1/2 -translate-y-1/2 z-30 bg-[var(--gecko-green)] border-4 border-[var(--border-ui)] p-3 md:p-4 skew-x-[-10deg] hover:scale-110 transition-transform shadow-lg active:translate-y-[-45%]"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="black"
+        stroke-width="4"
+        stroke-linecap="square"
+        stroke-linejoin="round"
+        class="md:w-8 md:h-8"
+      >
+        <path d="m9 18 6-6-6-6" />
+      </svg>
+    </button>
+
+    {% assign projects = site.projects | where: "locale", site.lang | sort:
+    "order" | reverse %}
+
+    <div
+      class="slider-outer grid grid-cols-1 md:grid-cols-2"
+      id="projectsSlider"
+    >
+      <div
+        class="slide-media h-[480px] md:h-auto bg-[--bg-color] overflow-hidden flex items-center justify-center relative"
+      >
+        <div class="arcade-wrapper transform scale-[0.6] md:scale-[0.85] pt-8">
+          <div class="arcade-machine">
+            <div class="shadow"></div>
+            <div class="top" style="--machine-body: var(--gecko-green)">
+              <h1
+                class="title-font font-black text-4xl md:text-5xl tracking-tighter"
+                style="
+                  font-family: 'Anta', sans-serif !important;
+                  color: #0d0d0d !important;
+                "
+              >
+                RE-G3X
+              </h1>
+            </div>
+            <div class="screen-container">
+              <div class="top-shadow"></div>
+              <div
+                class="screen relative bg-black overflow-hidden border-4 border-[#0d0d0d]"
+              >
+                <div class="screen-overlay z-20 pointer-events-none"></div>
+                <div class="w-full h-full relative z-0" id="screenTrack">
+                  {% for project in projects %}
+                  <div
+                    class="screen-slide absolute inset-0 w-full h-full flex flex-col justify-center items-center bg-black transition-opacity duration-500 ease-in-out {% if forloop.first %}opacity-100 z-10{% else %}opacity-0 z-0{% endif %}"
+                  >
+                    {% if project.image_preview %}
+                    <img
+                      src="{{ project.image | relative_url }}"
+                      alt="{{ project.title }}"
+                      class="w-full h-full object-cover absolute inset-0 z-0 opacity-90"
+                    />
+                    {% else %}
+                    <div
+                      class="z-0 flex flex-col items-center justify-center w-full h-full bg-[#050505]"
+                    >
+                      <div
+                        class="game-icon p-0 overflow-hidden border-2 border-[rgba(255,255,255,0.2)]"
+                        style="background: var(--gecko-green)"
+                      >
+                        <span class="text-4xl">👾</span>
+                      </div>
+                      <h3 class="text-white mt-4 tracking-widest font-bold">
+                        {{ project.title | upcase }}
+                      </h3>
+                    </div>
+                    {% endif %}
+                  </div>
+                  {% endfor %}
+                </div>
+                <p
+                  class="screen-select-label z-20 pointer-events-none font-bold"
+                >
+                  PRESS START
+                </p>
+              </div>
+            </div>
+            <div class="joystick-group">
+              <div class="joystick-base"></div>
+              <div class="joystick-shaft" id="joystick">
+                <div class="joystick-ball"></div>
+              </div>
+            </div>
+            <div class="board">
+              <div
+                class="button btn-green arcade-btn"
+                data-direction="up"
+              ></div>
+              <div
+                class="button btn-pink arcade-btn"
+                data-direction="left"
+              ></div>
+              <div
+                class="button btn-blue arcade-btn"
+                data-direction="right"
+              ></div>
+              <div
+                class="button btn-yellow arcade-btn"
+                data-direction="down"
+              ></div>
+            </div>
+            <div class="bottom"></div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="slide-info-wrapper relative overflow-hidden bg-[var(--section-bg)] min-h-[400px] md:min-h-full h-full"
+      >
+        <div class="w-full h-full relative" id="infoTrack">
+          {% for project in projects %}
+          <div
+            class="slide-info absolute inset-0 w-full h-full flex flex-col justify-center p-8 md:p-12 transition-opacity duration-500 ease-in-out bg-[var(--section-bg)] {% if forloop.first %}opacity-100 z-10 pointer-events-auto{% else %}opacity-0 z-0 pointer-events-none{% endif %}"
+          >
+            <span
+              class="slide-info-tag font-black"
+              style="color: var(--gecko-pink)"
+              >{{ project.categories | first | upcase | replace: "-", " "
+              }}</span
+            >
+            <h3
+              class="slide-info-title title-font text-[var(--text-color)] font-black"
+            >
+              {{ project.title }}
+            </h3>
+            <p class="slide-info-desc text-[var(--text-color)] font-medium">
+              {{ project.abstract | truncatewords: 25 }}
+            </p>
+            <div
+              class="slide-info-stats text-[var(--text-color)] mt-4 border-t border-dashed border-[var(--border-ui)]/20 pt-4"
+            >
+              <div class="stat-row">
+                <span class="font-bold opacity-60">Type:</span>
+                <span class="font-bold"
+                  >{{ project.categories | join: ", " | replace: "-", " " |
+                  capitalize }}</span
+                >
+              </div>
+              <div class="stat-row mt-2">
+                <span class="font-bold opacity-60">Updated:</span>
+                <span class="font-bold"
+                  >{% if project.mdate %}{{ project.mdate | date: "%Y" }}{% else
+                  %}{{ project.date | date: "%Y" }}{% endif %}</span
+                >
+              </div>
+            </div>
+            <a
+              href="{{ project.url | relative_url }}"
+              class="slide-cta inline-block mt-6 font-black"
+              style="
+                color: var(--gecko-green);
+                border-bottom-color: var(--gecko-green);
+              "
+              >Ver Detalhes</a
+            >
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mb-24 animate-fade-in relative">
+  <div class="flex items-center gap-4 mb-12">
+    <div
+      class="h-2 flex-grow bg-[var(--gecko-green)] opacity-30 skew-x-[-45deg]"
+    ></div>
+    <h2
+      class="p5-font text-2xl font-black tracking-[0.3em] text-[var(--text-color)] uppercase transition-colors"
+    >
+      {% t homepage.support %}
+    </h2>
+    <div
+      class="h-2 flex-grow bg-[var(--gecko-green)] opacity-30 skew-x-[-45deg]"
+    ></div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+    <a
+      href="https://www5.usp.br/"
+      target="_blank"
+      class="section-box p-8 flex items-center justify-center transition-all cursor-pointer bg-[var(--section-bg)] group overflow-hidden border-[var(--border-ui)]/30"
+    >
+      <img
+        src="{{ '/assets/img/support/usp-logo.png' | relative_url }}"
+        alt="USP"
+        class="h-16 object-contain relative z-10 logo-white-svg"
+      />
+    </a>
+    <a
+      href="https://www.icmc.usp.br/"
+      target="_blank"
+      class="section-box p-8 flex items-center justify-center transition-all cursor-pointer bg-[var(--section-bg)] group overflow-hidden border-[var(--border-ui)]/30"
+    >
+      <img
+        src="{{ '/assets/img/support/icmc-logo.png' | relative_url }}"
+        alt="ICMC"
+        class="h-16 object-contain relative z-10 logo-white-svg"
+      />
+    </a>
+  </div>
+</section>
+
+<script>
+  let currentProjectSlide = 0;
+
+  const screenSlides = document.querySelectorAll(".screen-slide");
+  const infoSlides = document.querySelectorAll(".slide-info");
+  const totalProjectSlides = screenSlides.length;
+  let autoSlideTimer;
+
+  function startAutoSlide() {
+    autoSlideTimer = setInterval(() => {
+      arcadeNav("right");
+    }, 6000);
+  }
+
+  function resetAutoSlide() {
+    clearInterval(autoSlideTimer);
+    startAutoSlide();
+  }
+
+  function changeProjectSlide(dir) {
+    if (totalProjectSlides === 0) return;
+
+    // Oculta slide atual
+    screenSlides[currentProjectSlide].classList.remove("opacity-100", "z-10");
+    screenSlides[currentProjectSlide].classList.add("opacity-0", "z-0");
+    infoSlides[currentProjectSlide].classList.remove(
+      "opacity-100",
+      "z-10",
+      "pointer-events-auto",
+    );
+    infoSlides[currentProjectSlide].classList.add(
+      "opacity-0",
+      "z-0",
+      "pointer-events-none",
+    );
+
+    // Avança ou recua o índice
+    currentProjectSlide =
+      (currentProjectSlide + dir + totalProjectSlides) % totalProjectSlides;
+
+    // Mostra o novo slide
+    screenSlides[currentProjectSlide].classList.remove("opacity-0", "z-0");
+    screenSlides[currentProjectSlide].classList.add("opacity-100", "z-10");
+    infoSlides[currentProjectSlide].classList.remove(
+      "opacity-0",
+      "z-0",
+      "pointer-events-none",
+    );
+    infoSlides[currentProjectSlide].classList.add(
+      "opacity-100",
+      "z-10",
+      "pointer-events-auto",
+    );
+  }
+
+  function arcadeNav(direction) {
+    resetAutoSlide();
+
+    const shaft = document.getElementById("joystick");
+    if (!shaft) return;
+
+    shaft.style.transform = "";
+    void shaft.offsetWidth;
+
+    shaft.classList.add("tilt-" + direction);
+
+    let slideDir = 0;
+    if (direction === "left") slideDir = -1;
+    if (direction === "right") slideDir = 1;
+
+    // Troca os slides (com fade) após inclinar o controle
+    if (slideDir !== 0) {
+      setTimeout(() => {
+        changeProjectSlide(slideDir);
+      }, 150);
+    }
+
+    setTimeout(() => {
+      shaft.classList.remove("tilt-left", "tilt-right", "tilt-up", "tilt-down");
+    }, 300);
+  }
+
+  document.querySelectorAll(".arcade-btn").forEach((button) => {
+    button.addEventListener("click", function () {
+      const direction = this.dataset.direction;
+      arcadeNav(direction);
+    });
+  });
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") arcadeNav("left");
+    if (e.key === "ArrowRight") arcadeNav("right");
+    if (e.key === "ArrowUp") arcadeNav("up");
+    if (e.key === "ArrowDown") arcadeNav("down");
+  });
+
+  if (totalProjectSlides > 1) {
+    startAutoSlide();
+  }
+</script>

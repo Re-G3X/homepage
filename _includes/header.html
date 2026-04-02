@@ -1,49 +1,205 @@
-<header class="site-header" role="banner">
+<header
+  class="site-header relative z-50 md:mb-2 w-full transition-colors duration-400"
+  role="banner"
+>
+  <nav
+    class="max-w-7xl mx-auto px-4 md:px-8 py-6 md:py-10 flex justify-between items-center gap-2 sm:gap-6 animate-fade-in"
+  >
+    <a
+      href="{{ '/' | relative_url }}"
+      class="title-font text-lg md:text-xl tracking-tighter border-2 border-[var(--border-ui)] px-2 py-0.5 skew-x-[-12deg] bg-[var(--gecko-green)] text-[#0d0d0d] hover:scale-105 transition-transform"
+      style="box-shadow: 4px 4px 0px 0px var(--card-shadow)"
+    >
+      <span class="inline-block skew-x-[12deg]">RE-G3X</span>
+    </a>
 
-  <div class="wrapper">
-
-    <a class="site-title" rel="author" href="{{ site.baseurl }}/">{% t global.title %}</a>
-
-    <nav class="site-nav">
-      <div class="trigger">
-        {% assign link = '/news' %}
-        <a class="page-link" href="{{ link | prepend: site.baseurl }}">{% t global.news %}</a>
-        {% assign link = '/people' %}
-        <a class="page-link" href="{{ link | prepend: site.baseurl }}">{% t global.people %}</a>
-        {% assign link = '/projects' %}
-        <a class="page-link" href="{{ link | prepend: site.baseurl }}">{% t global.projects %}</a>
-        {% assign link = '/publications' %}
-        <a class="page-link" href="{{ link | prepend: site.baseurl }}">{% t global.publications %}</a>
-        {% assign link = '/partners' %}
-        <a class="page-link" href="{{ link | prepend: site.baseurl }}">{% t global.partners %}</a>
-        {% assign link = '/about' %}
-        <a class="page-link" href="{{ link | prepend: site.baseurl }}">{% t global.about %}</a>
-        {% assign link = '/contact' %}
-        <a class="page-link" href="{{ link | prepend: site.baseurl }}">{% t global.contact %}</a>
-
-        <!-- Adds links to other languages on the post -->
-        {% for lang in site.languages %}
-          {% unless site.lang == lang %}
-            {% if lang == site.default_lang and site.default_locale_in_subfolder != true %}
-              {% assign url = page.url | replace: '/en', '' %}
-              <a href="{{ site.baseurl_root }}{{ url }}">{% t langs.{{ lang }} %}</a>
-            {% else %}
-              {% assign l = '/' | append: lang | append: '/' %}
-              {% assign url = page.url | replace: '/', l %}
-              <a href="{{ site.baseurl_root }}{{ url }}">{% t langs.{{ lang }} %}</a>
-            {% endif %}
-
-            {% assign next = forloop.index | plus: 1 %}
-
-            {% if forloop.last != true and site.languages[forloop.index] != site.lang or site.languages[forloop.index] == site.lang and next < forloop.length %}
-              <span class="separator"> &bull; </span>
-            {% endif %}
-
-          {% endunless %}
-        {% endfor %}
+    <div class="flex items-center gap-2 md:gap-6 lg:gap-8">
+      <div
+        id="navMenu"
+        class="flex flex-col md:flex-row items-center w-full md:w-auto gap-4 md:gap-6 lg:gap-8 p5-font text-xs md:text-sm tracking-widest font-black uppercase absolute md:relative top-[120%] md:top-auto left-0 md:left-auto bg-[var(--section-bg)] md:bg-transparent border-4 md:border-0 border-[var(--border-ui)] py-6 md:py-0 px-4 md:px-0 shadow-2xl md:shadow-none z-50 opacity-0 pointer-events-none -translate-y-4 md:opacity-100 md:pointer-events-auto md:translate-y-0 transition-all duration-300 ease-in-out"
+      >
+        <a
+          href="{{ '/news' | relative_url }}"
+          class="nav-link w-full md:w-auto text-center py-2 md:py-0 border-b border-dashed border-[var(--border-ui)]/20 md:border-none text-[var(--text-color)]"
+          >{% t global.news %}</a
+        >
+        <a
+          href="{{ '/people' | relative_url }}"
+          class="nav-link w-full md:w-auto text-center py-2 md:py-0 border-b border-dashed border-[var(--border-ui)]/20 md:border-none text-[var(--text-color)]"
+          >{% t global.people %}</a
+        >
+        <a
+          href="{{ '/projects' | relative_url }}"
+          class="nav-link w-full md:w-auto text-center py-2 md:py-0 border-b border-dashed border-[var(--border-ui)]/20 md:border-none text-[var(--text-color)]"
+          >{% t global.projects %}</a
+        >
+        <a
+          href="{{ '/publications' | relative_url }}"
+          class="nav-link w-full md:w-auto text-center py-2 md:py-0 border-b border-dashed border-[var(--border-ui)]/20 md:border-none text-[var(--text-color)]"
+          >{% t global.publications %}</a
+        >
+        <a
+          href="{{ '/partners' | relative_url }}"
+          class="nav-link w-full md:w-auto text-center py-2 md:py-0 border-b border-dashed border-[var(--border-ui)]/20 md:border-none text-[var(--text-color)]"
+          >{% t global.partners %}</a
+        >
+        <a
+          href="{{ '/about' | relative_url }}"
+          class="nav-link w-full md:w-auto text-center py-2 md:py-0 border-b border-dashed border-[var(--border-ui)]/20 md:border-none text-[var(--text-color)]"
+          >{% t global.about %}</a
+        >
+        <a
+          href="{{ '/contact' | relative_url }}"
+          class="nav-link w-full md:w-auto text-center py-2 md:py-0 border-b border-dashed border-[var(--border-ui)]/20 md:border-none text-[var(--text-color)]"
+          >{% t global.contact %}</a
+        >
       </div>
-    </nav>
 
-  </div>
+      <div class="flex items-center gap-1.5 sm:gap-3">
+        {% for lang in site.languages %} {% unless site.lang == lang %} {% if
+        lang == site.default_lang and site.default_locale_in_subfolder != true
+        %} {% assign url = page.url | replace: '/en', '' %} {% else %} {% assign
+        l = '/' | append: lang | append: '/' %} {% assign url = page.url |
+        replace: '/', l %} {% endif %}
+        <a
+          href="{{ site.baseurl_root }}{{ url }}"
+          class="flex items-center justify-center gap-1 md:gap-2 border-2 border-[var(--border-ui)] px-2.5 py-1 md:px-4 md:py-1.5 rounded-full text-[var(--text-color)] bg-transparent hover:bg-[var(--text-color)] hover:text-[var(--bg-color)] transition-all font-bold text-[10px] sm:text-xs md:text-sm whitespace-nowrap"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4"
+            style="
+              fill: transparent !important;
+              background-color: transparent !important;
+            "
+          >
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path
+              d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+            ></path>
+          </svg>
+          {% t langs.{{ lang }} %}
+        </a>
+        {% endunless %} {% endfor %}
 
+        <label class="switch scale-[0.6] sm:scale-75 md:scale-100 origin-right">
+          <input
+            type="checkbox"
+            class="theme-checkbox"
+            onchange="toggleTheme()"
+            checked
+          />
+          <div class="slider shadow-lg">
+            <div class="sun-moon">
+              <div
+                class="moon-dot"
+                style="
+                  width: 4px;
+                  height: 4px;
+                  top: 4px;
+                  left: 12px;
+                  border-radius: 50%;
+                  background: #cbd5e1;
+                "
+              ></div>
+              <div
+                class="moon-dot"
+                style="
+                  width: 8px;
+                  height: 8px;
+                  top: 12px;
+                  left: 6px;
+                  border-radius: 50%;
+                  background: #cbd5e1;
+                "
+              ></div>
+            </div>
+            <div class="clouds">
+              <svg
+                class="cloud"
+                style="width: 18px; top: 14px; left: 8px"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M17.5,19c-3.037,0-5.5-2.463-5.5-5.5c0-0.084,0.002-0.167,0.006-0.25C11.378,12.518,10.658,12,9.85,12c-1.381,0-2.5,1.119-2.5,2.5c0,0.11,0.007,0.218,0.021,0.324C6.398,15.191,5.5,16.241,5.5,17.5c0,1.381,1.119,2.5,2.5,2.5h9.5c0.828,0,1.5-0.672,1.5-1.5S18.328,17,17.5,17L17.5,19z"
+                />
+              </svg>
+              <svg
+                class="cloud"
+                style="width: 22px; top: 6px; left: 22px"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M17.5,19c-3.037,0-5.5-2.463-5.5-5.5c0-0.084,0.002-0.167,0.006-0.25C11.378,12.518,10.658,12,9.85,12c-1.381,0-2.5,1.119-2.5,2.5c0,0.11,0.007,0.218,0.021,0.324C6.398,15.191,5.5,16.241,5.5,17.5c0,1.381,1.119,2.5,2.5,2.5h9.5c0.828,0,1.5-0.672,1.5-1.5S18.328,17,17.5,17L17.5,19z"
+                />
+              </svg>
+            </div>
+            <div class="stars">
+              <div
+                class="star"
+                style="
+                  width: 2px;
+                  height: 2px;
+                  top: 8px;
+                  left: 12px;
+                  background: white;
+                "
+              ></div>
+              <div
+                class="star"
+                style="
+                  width: 2px;
+                  height: 2px;
+                  top: 20px;
+                  left: 18px;
+                  background: white;
+                  animation-delay: 0.5s;
+                "
+              ></div>
+              <div
+                class="star"
+                style="
+                  width: 2px;
+                  height: 2px;
+                  top: 6px;
+                  left: 42px;
+                  background: white;
+                  animation-delay: 1.2s;
+                "
+              ></div>
+            </div>
+          </div>
+        </label>
+
+        <button
+          onclick="toggleMobileMenu()"
+          class="md:hidden p-1 sm:p-1.5 border-2 border-[var(--border-ui)] text-[var(--text-color)] bg-[var(--section-bg)] hover:bg-[var(--gecko-green)] hover:text-[#0d0d0d] transition-colors focus:outline-none shadow-md ml-1 sm:ml-0"
+        >
+          <svg
+            class="w-4 h-4 sm:w-5 sm:h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            style="fill: transparent !important"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
 </header>

@@ -1,34 +1,67 @@
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <!-- Begin Jekyll SEO tag v2.7.1 -->
 
-{% if page.title %}
-	{% if page.layout != 'default' %}
-		<title>{{ page.title }} · {% t global.title %}</title>
-	{% else %}
-		<title>{% t page.title %} · {% t global.title %}</title>
-	{% endif %}
+{% if page.title %} {% if page.layout != 'default' %}
+<title>{{ page.title }} · {% t global.title %}</title>
 {% else %}
-	<title>{% t global.title %}</title>
+<title>{% t page.title %} · {% t global.title %}</title>
+{% endif %} {% else %}
+<title>{% t global.title %}</title>
 {% endif %}
 
 <!-- Add favicon -->
-<link rel="icon" href="{{ site.baseurl_root }}/assets/img/favicon.png">
-<link rel="canonical" href="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
+<link rel="icon" href="{{ site.baseurl_root }}/assets/img/favicon.png" />
+<link
+  rel="canonical"
+  href="{{ page.url | prepend: site.baseurl | prepend: site.url }}"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Anta&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+  rel="stylesheet"
+/>
 
-<meta property="og:url" content="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
-<meta property="og:title" content="{{ site.title }}">
-<meta property="og:site_name" content="{{ site.title }}">
-<meta property="og:locale" content="pt_BR">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  (function () {
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    document.documentElement.classList.remove("dark", "light");
+    document.documentElement.classList.add(savedTheme);
+  })();
+</script>
+
+<meta
+  property="og:url"
+  content="{{ page.url | prepend: site.baseurl | prepend: site.url }}"
+/>
+<meta property="og:title" content="{{ site.title }}" />
+<meta property="og:site_name" content="{{ site.title }}" />
+<meta property="og:locale" content="pt_BR" />
 <!-- <meta name="description" content="{% t global.description %}"> -->
-<meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{% t global.description %}{% endif %}">
+<meta
+  name="description"
+  content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{% t global.description %}{% endif %}"
+/>
 <!-- <meta property="og:description" content="{% t global.description %}"> -->
-<meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{% t global.description %}{% endif %}">
+<meta
+  property="og:description"
+  content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{% t global.description %}{% endif %}"
+/>
 
 <script type="application/ld+json">
-{"description":"{% t global.description %}", "headline":"{{ site.title }}", "url":"{{ page.url | prepend: site.baseurl_root | prepend: site.url }}", "@type":"WebSite", "name":"{{ site.title }}", "@context":"https://schema.org"}</script>
+  {
+    "description": "{% t global.description %}",
+    "headline": "{{ site.title }}",
+    "url": "{{ page.url | prepend: site.baseurl_root | prepend: site.url }}",
+    "@type": "WebSite",
+    "name": "{{ site.title }}",
+    "@context": "https://schema.org"
+  }
+</script>
 
 {% include seo.html %}
 
@@ -36,8 +69,15 @@
 
 {% include slider_styles.html %}
 
-<link rel="stylesheet" href="{{ site.baseurl_root }}/assets/css/core.css" type="text/css">
+<link
+  rel="stylesheet"
+  href="{{ site.baseurl_root }}/assets/css/core.css"
+  type="text/css"
+/>
 
 {% if site.mathjax %}
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+></script>
 {% endif %}

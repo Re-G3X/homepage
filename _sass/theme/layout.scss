@@ -1,18 +1,50 @@
+body {
+  position: relative;
+  min-height: 100vh;
+
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 400px; // Tamanho da área do efeito halftone
+    height: 400px;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.25;
+
+    background-image: radial-gradient(var(--border-ui) 1.5px, transparent 0);
+    background-size: 8px 8px;
+
+    -webkit-mask-image: radial-gradient(
+      circle at top right,
+      black 10%,
+      transparent 70%
+    );
+    mask-image: radial-gradient(
+      circle at top right,
+      black 10%,
+      transparent 70%
+    );
+  }
+}
+
 /**
  * Site header.
  */
 .site-header {
   border: none;
-  background-color: $gray-color;
+  background-color: var(--bg-color);
   min-height: $spacing-unit * 1.865;
-
-  // Positioning context for the mobile navigation icon
   position: relative;
+  z-index: 10;
+  transition: background-color 0.4s;
 }
 
 .site-title {
   @include relative-font-size(1.625);
-  font-weight: 300;
+  font-family: "Anta", sans-serif; /* Alinhado com o novo tema */
+  font-weight: 700;
   line-height: $base-line-height * $base-font-size * 2.25;
   letter-spacing: -1px;
   margin-bottom: 0;
@@ -21,567 +53,114 @@
   &,
   &:active,
   &:visited {
-    color: $orange-color;
+    color: var(--gecko-green);
     text-decoration: none;
   }
   &:hover {
-    color: $white-color;
+    color: var(--text-color);
     text-decoration: none;
   }
 }
-
-.site-nav {
-  float: right;
-  line-height: $base-line-height * $base-font-size * 2.25;
-
-  .nav-trigger {
-    display: none;
-  }
-
-  .menu-icon {
-    display: none;
-  }
-
-  .page-link {
-    color: $white-color;
-    line-height: $base-line-height;
-    text-decoration: none;
-
-    &:hover {
-      color: $green-color;
-    }
-
-    // Gaps between nav items, but not on the last one
-    &:not(:last-child) {
-      margin-right: 20px;
-    }
-  }
-
-  @include media-query($on-palm) {
-    position: absolute;
-    top: 9px;
-    right: $spacing-unit / 2;
-    background-color: $gray-color;
-    border: 1px solid $gray-color;
-    border-radius: 5px;
-    text-align: right;
-
-    label[for="nav-trigger"] {
-      display: block;
-      float: right;
-      width: 36px;
-      height: 36px;
-      z-index: 2;
-      cursor: pointer;
-    }
-
-    .menu-icon {
-      display: block;
-      float: right;
-      width: 36px;
-      height: 26px;
-      line-height: 0;
-      padding-top: 10px;
-      text-align: center;
-
-      > svg {
-        fill: $gray-color;
-      }
-    }
-
-    input ~ .trigger {
-      clear: both;
-      display: none;
-    }
-
-    input:checked ~ .trigger {
-      display: block;
-      padding-bottom: 5px;
-    }
-
-    .page-link {
-      display: block;
-      padding: 5px 10px;
-
-      &:not(:last-child) {
-        margin-right: 0;
-      }
-      margin-left: 20px;
-    }
-  }
-}
-
-
 
 /**
  * Site footer.
  */
 .site-footer {
-  border-top: none;
+  border-top: 4px solid rgba(var(--gecko-blue), 0.1);
   padding: 0;
-  background-color: $gray-color;
-  padding-top: $spacing-unit;
-}
-
-.footer-heading {
-  @include relative-font-size(1.125);
-  margin-bottom: $spacing-unit / 2;
-}
-
-.instituition-list {
-  list-style: none;
-  margin-left: 0;
+  background-color: var(--bg-color);
+  transition: background-color 0.4s;
 }
 
 .footer-text {
-  color: $white-color;
-  flex: 1;
-  display: flex;
+  color: var(--text-color);
+  opacity: 0.7;
   a {
     &,
     &:visited,
     &:active {
-      color: $white-color;
-      text-decoration: none;
+      color: var(--text-color);
     }
     &:hover {
-      color: $green-color;
-      text-decoration: none;
+      color: var(--gecko-green);
     }
   }
 }
 
-.footer-col-wrapper {
-  @include relative-font-size(0.9375);
-  color: $gray-color;
-  margin-left: -$spacing-unit / 2;
-  @extend %clearfix !optional; // @extend %clearfix;
-}
-
-.footer-col {
-  float: left;
-  margin-bottom: $spacing-unit / 2;
-  padding-left: $spacing-unit / 2;
-}
-
-.footer-col-1 {
-  width: -webkit-calc(35% - (#{$spacing-unit} / 2));
-  width:         calc(35% - (#{$spacing-unit} / 2));
-}
-
-.footer-col-2 {
-  width: -webkit-calc(20% - (#{$spacing-unit} / 2));
-  width:         calc(20% - (#{$spacing-unit} / 2));
-}
-
-.footer-col-3 {
-  width: -webkit-calc(45% - (#{$spacing-unit} / 2));
-  width:         calc(45% - (#{$spacing-unit} / 2));
-}
-
-@include media-query($on-laptop) {
-  .footer-col-1,
-  .footer-col-2 {
-    width: -webkit-calc(50% - (#{$spacing-unit} / 2));
-    width:         calc(50% - (#{$spacing-unit} / 2));
-  }
-
-  .footer-col-3 {
-    width: -webkit-calc(100% - (#{$spacing-unit} / 2));
-    width:         calc(100% - (#{$spacing-unit} / 2));
-  }
-}
-
-@include media-query($on-palm) {
-  .footer-col {
-    float: none;
-    width: -webkit-calc(100% - (#{$spacing-unit} / 2));
-    width:         calc(100% - (#{$spacing-unit} / 2));
-  }
-}
-
-.host-text {
-  float: right;
-  flex: 1;
-  display: flex;
-  padding-top: 1.8%;
-  padding-bottom: 1.8%;
-}
-
-
-
-/**
- * Page content.
- */
 .page-content {
   flex: 1;
   display: flex;
   padding: 0;
-  background-color: $background-color;
+  background-color: transparent;
+  position: relative;
+  /* Deixamos o fundo controlado pelo body no default.html */
+  z-index: 1; // Garante que o conteúdo fique acima do efeito do body
 }
 
-.page-heading {
-  @include relative-font-size(2);
-  color: $white-color;
-  border-bottom: 1px solid $white-color;
-  margin-bottom: $spacing-unit * 1.5;
-}
-
+/* * Ajuste crucial para acomodar a Lista de Membros e Profile:
+ * Removemos o fundo cinza fixo e as bordas rígidas do wrapper antigo.
+ */
 .post-wrapper {
-  max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
-  max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
+  max-width: 1280px; /* max-w-7xl */
   margin-right: auto;
   margin-left: auto;
-  @extend %clearfix;
-
-  flex: 1;
-  padding: $spacing-unit;
-  padding-top: $spacing-unit / 2;
-  background-color: $gray-color;
+  padding: 2rem 1rem;
+  background-color: transparent; /* Remove o fundo cinza antigo */
 
   @include media-query($on-laptop) {
-    max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
-    max-width:         calc(#{$content-width} - (#{$spacing-unit}));
-    padding-right: $spacing-unit / 2;
-    padding-left: $spacing-unit / 2;
+    padding: 1rem;
   }
 }
-
-.home {
-  padding: $spacing-unit;
-}
-
-.post-list-heading {
-  @include relative-font-size(1.75);
-}
-
-.post-list {
-  margin-left: 0;
-  list-style: none;
-
-  > li {
-    margin-bottom: $spacing-unit;
-  }
-}
-
-.post-meta {
-  float: right;
-  padding-top: $spacing-unit / 5;
-  padding-bottom: $spacing-unit / 5;
-  font-size: $base-font-size;
-  color: $gray-color-light;
-}
-
-.post-link {
-  display: inline;
-  @include relative-font-size(1.5);
-
-  &,
-  &:visited,
-  &:active {
-    color: $green-color;
-    text-decoration: none;
-  }
-  &:hover {
-    color: $orange-color;
-    text-decoration: none;
-  }
-}
-
-
 
 /**
- * General posts.
+ * Custom Profiles & Team Styles
+ * Removemos os estilos circulares antigos para aceitar o novo design Persona 5.
  */
-.post {
-  padding: $spacing-unit;
-}
-
-.post-header {
-  margin-bottom: 0;
-}
-
-.post-title {
-  @include relative-font-size(2.625);
-  letter-spacing: -1px;
-  line-height: 1;
-  margin-bottom: $spacing-unit / 2;
-  color: $white-color;
-
-  @include media-query($on-laptop) {
-    @include relative-font-size(2.25);
-  }
-}
-
-.post-content {
-  h2 {
-    @include relative-font-size(2);
-
-    @include media-query($on-laptop) {
-      @include relative-font-size(1.75);
-    }
-  }
-
-  h3 {
-    @include relative-font-size(1.625);
-
-    @include media-query($on-laptop) {
-      @include relative-font-size(1.375);
-    }
-  }
-
-  h4 {
-    @include relative-font-size(1.25);
-
-    @include media-query($on-laptop) {
-      @include relative-font-size(1.125);
-    }
-  }
-}
-
-
-
-/**
- * Project posts.
- */
-.post-section {
-  padding: $spacing-unit / 2;
-  text-align: justify;
-}
-
-.project-section {
-  display: flex;
-}
-
-.media-section {
-  width: $media-size;
-  object-fit: contain;
-}
-
-.abstract-section {
-  padding-left: $spacing-unit;
-}
-
-.post-section-title {
-  color: $orange-color;
-  line-height: 1;
-  margin-bottom: $spacing-unit / 2;
-}
-
-.post-section-content {
-  display: flex;
-}
-
-.team {
-  flex-wrap: wrap;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-}
-
+.member,
 .author {
   display: flex;
-  justify-content: center;
-  text-align: center;
-  padding: $spacing-unit;
-  padding-bottom: 0;
-}
-
-.author-name {
-  margin: 0;
-}
-
-.author-picture {
-  padding-bottom: $spacing-unit / 2;
-  max-width: $person-picture;
-  border-radius: 50%;
-}
-
-.project-preview {
-  width: 100%;
-  border-radius: 10px;
-
-  .image-preview {
-    width: 100%;
-    object-fit: contain;
-    border-radius: 10px;
-
-    &:hover {
-      opacity: 80%;
-    }
-  }
-
-  &:hover {
-    opacity: 80%;
-  }
-}
-
-
-
-/**
- * Publications.
- */
-.publication-list {
-  margin-left: 0;
-  list-style: none;
-  display: flex;
-
-  > li {
-    margin-bottom: $spacing-unit;
-  }
-}
-
-.publication-meta {
-  padding-top: $spacing-unit / 5;
-  padding-bottom: $spacing-unit / 5;
-  font-size: $base-font-size;
-  color: $gray-color-light;
-}
-
-.publication-title {
-  font-size: $base-font-size;
-  margin-bottom: 0;
-}
-
-.keyword-list {
-  font-size: $base-font-size;
-  color: $gray-color-light;
-  margin-bottom: 0;
-}
-
-
-
-/**
- * Dropdown.
- */
-.text-button {
-  cursor: pointer;
-}
-
-.project-abstract {
-  padding: $spacing-unit * 1.5;
-  padding-top: 0;
-  padding-right: 0;
-  text-align: justify;
-  font-style: italic;
-  p, h4 {
-    font-style: normal;
-    font-weight: bold;
-  }
-}
-
-.publication-abstract {
-  padding-top: $spacing-unit;
-  padding-left: $spacing-unit;
-  text-align: justify;
-  font-style: italic;
-  p, h4 {
-    font-style: normal;
-    font-weight: bold;
-  }
-}
-
-.publication-bibtex {
-  padding-top: $spacing-unit;
-  padding-left: $spacing-unit;
-  p, h4 {
-    font-weight: bold;
-  }
-  pre {
-    background-color: $gray-color;
-    code {
-      background-color: $gray-color;
-    }
-  }
-}
-
-.copy {
-  color: $green-color;
-  cursor: pointer;
-}
-
-
-
-/**
- * Members.
- */
-.member {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  padding: $spacing-unit;
-  padding-bottom: 0;
-}
-
-.member-name {
-  margin: 0;
-}
-
-.member-picture {
-  padding-bottom: $spacing-unit / 2;
-  max-width: $person-picture * 1.5;
-  border-radius: 50%;
-}
-
-
-
-/**
- * 404: page not found.
- */
-.notfound-content {
-  flex: 1;
-  display: flex;
-  padding: 0;
-  background-color: $background-color;
-}
-
-.notfound-wrapper {
-  margin-right: auto;
-  margin-left: auto;
-  @extend %clearfix;
-
-  display: flex;
   flex-direction: column;
-  padding: $spacing-unit;
-  padding-top: $spacing-unit / 2;
-  background-color: $gray-color;
-
+  align-items: center;
   text-align: center;
-  align-items:center;
-  justify-content: center;
 }
 
-.container {
-  min-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
-  min-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
-
-  @include media-query($on-laptop) {
-    min-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
-    min-width:         calc(#{$content-width} - (#{$spacing-unit}));
-    padding-right: $spacing-unit / 2;
-    padding-left: $spacing-unit / 2;
-  }
-
-  h1 {
-    margin: 30px 0;
-    font-size: 4em;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
+.member-picture,
+.author-picture {
+  /* Removemos o border-radius: 50% que forçava fotos redondas */
+  border-radius: 0;
+  object-fit: cover;
+  border: 4px solid var(--border-ui);
 }
 
-
+.member-name,
+.author-name {
+  font-family: "Anta", sans-serif;
+  text-transform: uppercase;
+  color: var(--gecko-green);
+  margin-top: 1rem;
+}
 
 /**
- * Icons.
+ * General Post/Page Titles
  */
-.links {
-  text-align: center;
+.page-heading {
+  @include relative-font-size(2.5);
+  font-family: "Anta", sans-serif;
+  text-transform: uppercase;
+  color: var(--text-color);
+  border-bottom: 6px solid var(--gecko-green);
+  margin-bottom: $spacing-unit * 2;
+  padding-bottom: 0.5rem;
 }
 
+/**
+ * Icons & Links
+ */
 a svg {
-  fill: $orange-color;
-  &:hover{
-    fill: $green-color-dark;
+  fill: currentColor;
+  transition: transform 0.2s, color 0.2s;
+  &:hover {
+    fill: var(--gecko-green);
+    transform: translateY(-2px);
   }
 }

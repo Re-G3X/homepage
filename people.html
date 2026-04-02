@@ -3,28 +3,95 @@ layout: default
 title: global.people
 ---
 
-<div class="home">
-  <h1 class="page-heading">{% t page.title %}</h1>
+<style>
+  .shadow-p5 {
+    box-shadow: 10px 10px 0px 0px var(--card-shadow);
+  }
+  .skew-neg-12 {
+    transform: skewX(-12deg);
+  }
+  .skew-12 {
+    transform: skewX(12deg);
+  }
+</style>
 
-  {% assign people = site.people | where: "locale", site.lang | sort: current %}
+<section
+  class="mb-16 flex flex-col items-start relative pl-2 sm:pl-6 md:pl-10 lg:pl-12 pt-8 animate-fade-in"
+>
+  <div
+    class="bg-[var(--gecko-green)] px-8 py-4 skew-neg-12 shadow-p5 border-4 border-[var(--border-ui)] inline-block mb-4 transition-transform cursor-default text-[#0d0d0d] p5-font"
+  >
+    <h1 class="text-3xl md:text-6xl italic tracking-tighter skew-12 font-black">
+      {% t global.people %}
+    </h1>
+  </div>
+  <div
+    class="bg-[var(--gecko-pink)] text-white px-6 py-2 skew-x-[-6deg] ml-6 border-4 border-[var(--border-ui)] shadow-p5"
+  >
+    <p
+      class="text-sm md:text-lg font-black tracking-widest italic uppercase p5-font"
+    >
+      STATUS: MEMBRO ATIVO
+    </p>
+  </div>
+</section>
 
-  {%- if people.size > 0 -%}
-    {%- if page.list_title -%}
-      <h2 class="post-list-heading">{{ page.list_title }}</h2>
-    {%- endif -%}
-    <div class="post-section">
-      <div class="post-section-content team">
-        {%- for person in people -%}
-          <div class="author">
-            <a href="{{ person.url | relative_url }}">
-              <img class="author-picture" src="{{ site.baseurl_root }}{{ person.picture }}">
-              <h3 class="author-name">{{ person.title | escape }}</h3>
-              <p class="author-name">{{ person.role }}</p>
-            </a>
+<section class="mb-32 animate-fade-in relative z-20">
+  <div
+    class="section-box p-8 md:p-12 overflow-hidden halftone-tl halftone-br transition-colors duration-400"
+  >
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10"
+    >
+      {% assign people = site.people | where: "locale", site.lang | sort:
+      "current" %} {% for person in people %} {% if person.picture and
+      person.picture != "" %} {% assign member_img = person.picture | prepend:
+      site.baseurl_root %} {% else %} {% assign member_img =
+      "/assets/img/members/icon-placeholder.png" | prepend: site.baseurl_root %}
+      {% endif %}
+
+      <a
+        href="{{ person.url | relative_url }}"
+        class="group cursor-pointer relative animate-fade-in block"
+      >
+        <div
+          class="absolute inset-0 bg-[var(--gecko-blue)] skew-y-3 transform group-hover:-skew-y-3 transition-all duration-300 border-4 border-[var(--gecko-blue)] opacity-80"
+        ></div>
+        <div
+          class="absolute inset-0 bg-[var(--section-bg)] border-4 border-[var(--border-ui)] transform -rotate-2 group-hover:rotate-1 transition-transform duration-300"
+        ></div>
+
+        <div class="relative p-5 flex flex-col h-full z-10">
+          <div
+            class="aspect-square w-full mb-6 overflow-hidden border-4 border-[var(--border-ui)] bg-[var(--bg-color)] relative shadow-p5"
+          >
+            <img
+              src="{{ member_img }}"
+              alt="{{ person.title }}"
+              class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+            />
           </div>
-        {%- endfor -%}
-      </div>
-    </div>
-  {%- endif -%}
 
-</div>
+          <div class="mt-auto">
+            <h2
+              class="text-2xl font-black italic leading-none mb-2 tracking-tighter group-hover:translate-x-2 transition-transform text-[var(--border-ui)] p5-font uppercase"
+            >
+              {{ person.title | escape }}
+            </h2>
+            <div class="flex items-center gap-2">
+              <div
+                class="h-1 flex-grow bg-[var(--gecko-green)] opacity-30"
+              ></div>
+              <div
+                class="bg-[var(--gecko-green)] text-[#0d0d0d] font-black text-[10px] px-3 py-1 uppercase tracking-[0.2em] skew-neg-12 p5-font"
+              >
+                <span class="inline-block skew-12">{{ person.role }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>

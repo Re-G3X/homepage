@@ -4,42 +4,33 @@ published: true
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html
+  lang="{% if page.locale %}{{ page.locale }}{% else %}{{ site.lang }}{% endif %}"
+  class="dark"
+>
+  <head>
+    {% include head.html %}
+  </head>
 
-	<head>
-		{% include head.html %}
-	</head>
-
-	<body>
-
-		{% include header.html %}
-
-    {% if page.ishome %}
-			<main class="home-content" aria-label="Content">
-				<div class="home-wrapper">
-					{{ content }}
-				</div>
-			</main>
+  <body
+    class="bg-[var(--bg-color)] text-[var(--text-color)] transition-colors duration-400 min-h-screen flex flex-col"
+  >
+    {% include header.html %} {% if page.ishome %}
+    <main
+      class="home-content max-w-7xl mx-auto p-4 md:p-8 relative z-10 flex-grow w-full"
+      aria-label="Content"
+    >
+      {{ content }}
+    </main>
+    {% else %} {% if page.is404 %}
+    <main class="notfound-content flex-grow" aria-label="Content">
+      <div class="notfound-wrapper">{{ content }}</div>
+    </main>
     {% else %}
-			{% if page.is404 %}
-		    <main class="notfound-content" aria-label="Content">
-		      <div class="notfound-wrapper">
-		        {{ content }}
-		      </div>
-		    </main>
-			{% else %}
-		    <main class="page-content" aria-label="Content">
-		      <div class="post-wrapper">
-		        {{ content }}
-		      </div>
-		    </main>
-    	{% endif %}
-		{% endif %}
-
-		{% include footer.html %}
-
-		{% include slider_scripts.html %}
-
-	</body>
-
+    <main class="page-content flex-grow" aria-label="Content">
+      <div class="post-wrapper">{{ content }}</div>
+    </main>
+    {% endif %} {% endif %} {% include footer.html %} {% include
+    slider_scripts.html %}
+  </body>
 </html>
