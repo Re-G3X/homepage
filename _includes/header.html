@@ -1,13 +1,13 @@
 <header
-  class="site-header relative z-50 md:mb-2 w-full transition-colors duration-400"
+  class="site-header relative z-50 py-4 w-full transition-colors duration-400"
   role="banner"
 >
   <nav
-    class="max-w-7xl mx-auto px-4 md:px-8 py-6 md:py-10 flex justify-between items-center gap-2 sm:gap-6 animate-fade-in"
+    class="max-w-7xl mx-auto px-4 md:px-8md:py-4 flex justify-between items-center gap-2 sm:gap-6 animate-fade-in"
   >
     <a
       href="{{ '/' | relative_url }}"
-      class="title-font text-lg md:text-xl tracking-tighter border-2 border-[var(--border-ui)] px-2 py-0.5 skew-x-[-12deg] bg-[var(--gecko-green)] text-[#0d0d0d] hover:scale-105 transition-transform"
+      class="title-font text-lg md:text-xl tracking-tighter border-2 border-[var(--border-ui)] px-2 py-0.5 skew-x-[-12deg] bg-[var(--gecko-green)] text-[#0d0d0d] hover:scale-105 transition-transform focus:outline-none focus:ring-2 focus:ring-[var(--gecko-pink)] focus:ring-offset-2 focus:ring-offset-[var(--bg-color)]"
       style="box-shadow: 4px 4px 0px 0px var(--card-shadow)"
     >
       <span class="inline-block skew-x-[12deg]">RE-G3X</span>
@@ -16,41 +16,43 @@
     <div class="flex items-center gap-2 md:gap-6 lg:gap-8">
       <div
         id="navMenu"
-        class="flex flex-col md:flex-row items-center w-full md:w-auto gap-4 md:gap-6 lg:gap-8 p5-font text-xs md:text-sm tracking-widest font-black uppercase absolute md:relative top-[120%] md:top-auto left-0 md:left-auto bg-[var(--section-bg)] md:bg-transparent border-4 md:border-0 border-[var(--border-ui)] py-6 md:py-0 px-4 md:px-0 shadow-2xl md:shadow-none z-50 opacity-0 pointer-events-none -translate-y-4 md:opacity-100 md:pointer-events-auto md:translate-y-0 transition-all duration-300 ease-in-out"
+        role="navigation"
+        aria-label="Main menu"
+        class="flex flex-col md:flex-row items-stretch md:items-center w-full md:w-auto gap-1 md:gap-6 lg:gap-8 p5-font text-xs md:text-sm tracking-widest font-black uppercase absolute md:relative top-[110%] md:top-auto left-0 md:left-auto bg-[var(--section-bg)] md:bg-transparent border-4 md:border-0 border-[var(--border-ui)] p-4 md:p-0 shadow-[8px_8px_0px_0px_rgba(0,0,0,0.6)] md:shadow-none z-50 opacity-0 pointer-events-none -translate-y-4 md:opacity-100 md:pointer-events-auto md:translate-y-0 transition-all duration-300 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] origin-top"
       >
         <a
           href="{{ '/news' | relative_url }}"
-          class="nav-link w-full md:w-auto text-center py-2 md:py-0 border-b border-dashed border-[var(--border-ui)]/20 md:border-none text-[var(--text-color)]"
+          class="nav-link block w-full md:w-auto text-left md:text-center px-4 py-3 md:p-0 border-b border-dashed border-[var(--border-ui)]/20 md:border-none text-[var(--text-color)] hover:bg-[var(--gecko-green)] hover:text-[#0d0d0d] hover:skew-x-[-6deg] transition-all focus:outline-none focus:bg-[var(--gecko-green)] focus:text-[#0d0d0d]"
           >{% t global.news %}</a
         >
         <a
           href="{{ '/people' | relative_url }}"
-          class="nav-link w-full md:w-auto text-center py-2 md:py-0 border-b border-dashed border-[var(--border-ui)]/20 md:border-none text-[var(--text-color)]"
+          class="nav-link block w-full md:w-auto text-left md:text-center px-4 py-3 md:p-0 border-b border-dashed border-[var(--border-ui)]/20 md:border-none text-[var(--text-color)] hover:bg-[var(--gecko-green)] hover:text-[#0d0d0d] hover:skew-x-[-6deg] transition-all focus:outline-none focus:bg-[var(--gecko-green)] focus:text-[#0d0d0d]"
           >{% t global.people %}</a
         >
         <a
           href="{{ '/projects' | relative_url }}"
-          class="nav-link w-full md:w-auto text-center py-2 md:py-0 border-b border-dashed border-[var(--border-ui)]/20 md:border-none text-[var(--text-color)]"
+          class="nav-link block w-full md:w-auto text-left md:text-center px-4 py-3 md:p-0 border-b border-dashed border-[var(--border-ui)]/20 md:border-none text-[var(--text-color)] hover:bg-[var(--gecko-green)] hover:text-[#0d0d0d] hover:skew-x-[-6deg] transition-all focus:outline-none focus:bg-[var(--gecko-green)] focus:text-[#0d0d0d]"
           >{% t global.projects %}</a
         >
         <a
           href="{{ '/publications' | relative_url }}"
-          class="nav-link w-full md:w-auto text-center py-2 md:py-0 border-b border-dashed border-[var(--border-ui)]/20 md:border-none text-[var(--text-color)]"
+          class="nav-link block w-full md:w-auto text-left md:text-center px-4 py-3 md:p-0 border-b border-dashed border-[var(--border-ui)]/20 md:border-none text-[var(--text-color)] hover:bg-[var(--gecko-green)] hover:text-[#0d0d0d] hover:skew-x-[-6deg] transition-all focus:outline-none focus:bg-[var(--gecko-green)] focus:text-[#0d0d0d]"
           >{% t global.publications %}</a
         >
         <a
           href="{{ '/partners' | relative_url }}"
-          class="nav-link w-full md:w-auto text-center py-2 md:py-0 border-b border-dashed border-[var(--border-ui)]/20 md:border-none text-[var(--text-color)]"
+          class="nav-link block w-full md:w-auto text-left md:text-center px-4 py-3 md:p-0 border-b border-dashed border-[var(--border-ui)]/20 md:border-none text-[var(--text-color)] hover:bg-[var(--gecko-green)] hover:text-[#0d0d0d] hover:skew-x-[-6deg] transition-all focus:outline-none focus:bg-[var(--gecko-green)] focus:text-[#0d0d0d]"
           >{% t global.partners %}</a
         >
         <a
           href="{{ '/about' | relative_url }}"
-          class="nav-link w-full md:w-auto text-center py-2 md:py-0 border-b border-dashed border-[var(--border-ui)]/20 md:border-none text-[var(--text-color)]"
+          class="nav-link block w-full md:w-auto text-left md:text-center px-4 py-3 md:p-0 border-b border-dashed border-[var(--border-ui)]/20 md:border-none text-[var(--text-color)] hover:bg-[var(--gecko-green)] hover:text-[#0d0d0d] hover:skew-x-[-6deg] transition-all focus:outline-none focus:bg-[var(--gecko-green)] focus:text-[#0d0d0d]"
           >{% t global.about %}</a
         >
         <a
           href="{{ '/contact' | relative_url }}"
-          class="nav-link w-full md:w-auto text-center py-2 md:py-0 border-b border-dashed border-[var(--border-ui)]/20 md:border-none text-[var(--text-color)]"
+          class="nav-link block w-full md:w-auto text-left md:text-center px-4 py-3 md:p-0 border-b border-dashed border-[var(--border-ui)]/20 md:border-none text-[var(--text-color)] hover:bg-[var(--gecko-green)] hover:text-[#0d0d0d] hover:skew-x-[-6deg] transition-all focus:outline-none focus:bg-[var(--gecko-green)] focus:text-[#0d0d0d]"
           >{% t global.contact %}</a
         >
       </div>
@@ -63,7 +65,7 @@
         replace: '/', l %} {% endif %}
         <a
           href="{{ site.baseurl_root }}{{ url }}"
-          class="flex items-center justify-center gap-1 md:gap-2 border-2 border-[var(--border-ui)] px-2.5 py-1 md:px-4 md:py-1.5 rounded-full text-[var(--text-color)] bg-transparent hover:bg-[var(--text-color)] hover:text-[var(--bg-color)] transition-all font-bold text-[10px] sm:text-xs md:text-sm whitespace-nowrap"
+          class="flex items-center justify-center gap-1 md:gap-2 border-2 border-[var(--border-ui)] px-2.5 py-1 md:px-4 md:py-1.5 rounded-full text-[var(--text-color)] bg-transparent hover:bg-[var(--text-color)] hover:text-[var(--bg-color)] transition-all font-bold text-[10px] sm:text-xs md:text-sm whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-[var(--gecko-pink)] focus:ring-offset-2 focus:ring-offset-[var(--bg-color)]"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -97,6 +99,7 @@
             class="theme-checkbox"
             onchange="toggleTheme()"
             checked
+            aria-label="Toggle dark and light mode"
           />
           <div class="slider shadow-lg">
             <div class="sun-moon">
@@ -181,17 +184,23 @@
         </label>
 
         <button
+          id="mobileMenuBtn"
           onclick="toggleMobileMenu()"
-          class="md:hidden p-1 sm:p-1.5 border-2 border-[var(--border-ui)] text-[var(--text-color)] bg-[var(--section-bg)] hover:bg-[var(--gecko-green)] hover:text-[#0d0d0d] transition-colors focus:outline-none shadow-md ml-1 sm:ml-0"
+          aria-expanded="false"
+          aria-controls="navMenu"
+          aria-label="Open navigation menu"
+          class="md:hidden flex items-center justify-center p-1.5 sm:p-2 border-2 border-[var(--border-ui)] text-[var(--text-color)] bg-[var(--section-bg)] hover:bg-[var(--gecko-green)] hover:text-[#0d0d0d] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--gecko-pink)] focus:ring-offset-2 focus:ring-offset-[var(--bg-color)] shadow-md ml-1 sm:ml-0"
         >
           <svg
-            class="w-4 h-4 sm:w-5 sm:h-5"
+            id="mobileMenuIcon"
+            class="w-5 h-5 transition-transform duration-300"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
             style="fill: transparent !important"
           >
             <path
+              id="mobileMenuPath"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
@@ -203,3 +212,39 @@
     </div>
   </nav>
 </header>
+
+<script>
+  function toggleMobileMenu() {
+    const navMenu = document.getElementById("navMenu");
+    const btn = document.getElementById("mobileMenuBtn");
+    const iconPath = document.getElementById("mobileMenuPath");
+    const iconSvg = document.getElementById("mobileMenuIcon");
+
+    if (navMenu && btn) {
+      const isExpanded = btn.getAttribute("aria-expanded") === "true";
+
+      btn.setAttribute("aria-expanded", !isExpanded);
+      btn.setAttribute(
+        "aria-label",
+        !isExpanded ? "Close navigation menu" : "Open navigation menu",
+      );
+
+      navMenu.classList.toggle("opacity-0");
+      navMenu.classList.toggle("pointer-events-none");
+      navMenu.classList.toggle("-translate-y-4");
+
+      navMenu.classList.toggle("opacity-100");
+      navMenu.classList.toggle("pointer-events-auto");
+      navMenu.classList.toggle("translate-y-0");
+
+      if (!isExpanded) {
+        iconPath.setAttribute("d", "M6 18L18 6M6 6l12 12"); // X Path
+        iconSvg.classList.add("rotate-90");
+      }
+      else {
+        iconPath.setAttribute("d", "M4 6h16M4 12h16M4 18h16"); // Hamburger Path
+        iconSvg.classList.remove("rotate-90");
+      }
+    }
+  }
+</script>

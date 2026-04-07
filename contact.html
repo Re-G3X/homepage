@@ -3,8 +3,69 @@ layout: default
 title: global.contact
 ---
 
-<div class="home">
+<div class="max-w-5xl mx-auto px-4 py-4 animate-fade-in">
   <h1 class="page-heading">{% t page.title %}</h1>
 
-  {% tf contact.md %}
+  <div
+    class="border-4 border-[var(--border-ui)] bg-[var(--section-bg)] shadow-[8px_8px_0px_0px_var(--card-shadow)] md:shadow-[12px_12px_0px_0px_var(--card-shadow)] p-8 md:p-8 overflow-hidden halftone-tl halftone-br transition-colors duration-400 relative"
+  >
+    <div
+      class="markdown-content text-[var(--text-color)] text-lg leading-relaxed font-medium relative z-10"
+    >
+      {% tf contact.md %}
+    </div>
+  </div>
 </div>
+
+<style>
+  .markdown-content h1,
+  .markdown-content h2,
+  .markdown-content h3 {
+    font-family: "Anta", sans-serif;
+    text-transform: uppercase;
+    color: var(--gecko-green-text);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .markdown-content h1 {
+    font-size: 2rem;
+  }
+  .markdown-content h2 {
+    font-size: 2rem;
+    border-bottom: 3px solid var(--border-ui);
+    padding-bottom: 0.5rem;
+  }
+  .markdown-content h3 {
+    font-size: 1.5rem;
+  }
+
+  .markdown-content p {
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+  }
+
+  .markdown-content a {
+    color: var(--gecko-blue-text);
+    text-decoration: none;
+    border-bottom: 2px dashed var(--gecko-blue-text);
+    transition: all 0.3s ease;
+    font-weight: bold;
+  }
+  .markdown-content a:hover {
+    color: var(--gecko-pink-text);
+    border-bottom-color: var(--gecko-pink-text);
+    background-color: rgba(240, 98, 146, 0.1);
+  }
+
+  .markdown-content ul {
+    list-style-type: square;
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .markdown-content li {
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+  }
+</style>

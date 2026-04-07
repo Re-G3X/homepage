@@ -3,33 +3,77 @@ layout: default
 title: global.news
 ---
 
-<div class="home">
-  <h1 class="page-heading">{% t page.title %}</h1>
+<div class="max-w-6xl mx-auto px-4 py-12 animate-fade-in">
+  <div class="flex items-start mb-12 md:mb-16">
+    <div class="relative z-10 group inline-block">
+      <div
+        class="absolute -inset-1 md:-inset-2 bg-[var(--gecko-pink)] skew-x-[-12deg] -translate-x-2 translate-y-2 md:-translate-x-3 md:translate-y-3 opacity-90"
+      ></div>
+      <div
+        class="relative bg-[var(--gecko-green)] px-6 py-2 sm:px-8 sm:py-3 md:px-12 md:py-4 skew-x-[-12deg] border-4 border-[--border-ui] inline-block text-[#0d0d0d] title-font shadow-2xl overflow-hidden transition-colors duration-400"
+      >
+        <h1
+          class="text-4xl sm:text-5xl md:text-6xl tracking-tighter skew-x-[12deg] leading-none relative z-10 font-black p5-font"
+        >
+          {% t page.title %}
+        </h1>
+      </div>
+    </div>
+  </div>
 
-  {% assign posts = site.news | where: "locale", site.lang | sort: date | reverse %}
-
-  {% include data_format.html %}
-
-  {%- if posts.size > 0 -%}
-    {%- if page.list_title -%}
-      <h2 class="post-list-heading">{{ page.list_title }}</h2>
-    {%- endif -%}
-    <ul class="post-list">
-      {%- for post in posts -%}
-      <li>
-        {% if post.mdate %}
-          <span class="post-meta">{% t global.last_updated_at %}: {{ post.mdate | date: date_format }}</span>
-        {% else %}
-          <span class="post-meta">{% t global.published_at %}: {{ post.date | date: date_format }}</span>
-        {% endif %}
-        <h3>
-          <a class="post-link" href="{{ post.url | relative_url }}">
-            {{ post.title | escape }}
-          </a>
-        </h3>
-      </li>
-      {%- endfor -%}
-    </ul>
+  {% assign posts = site.news | where: "locale", site.lang | sort: date |
+  reverse %} {% include data_format.html %} {%- if posts.size > 0 -%} {%- if
+  page.list_title -%}
+  <h2
+    class="text-2xl md:text-3xl mb-8 p5-font border-b-4 border-[var(--gecko-blue)] pb-3 relative z-10 inline-block text-[var(--text-color)] tracking-widest uppercase"
+  >
+    {{ page.list_title }}
+  </h2>
   {%- endif -%}
 
+  <ul
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 relative z-10"
+  >
+    {%- for post in posts -%}
+    <li
+      class="border-4 border-[var(--border-ui)] bg-[var(--section-bg)] shadow-[8px_8px_0px_0px_var(--card-shadow)] md:shadow-[10px_10px_0px_0px_var(--card-shadow)] p-6 md:p-8 hover:-translate-y-2 hover:shadow-[4px_4px_0px_0px_var(--card-shadow)] transition-all duration-300 group relative overflow-hidden halftone-tl halftone-br flex flex-col h-full"
+    >
+      <div class="mb-5 flex-shrink-0">
+        {% if post.mdate %}
+        <div
+          class="inline-flex items-center px-4 py-1.5 skew-x-[-15deg] border-l-[6px] border-[var(--gecko-pink)] bg-[var(--gecko-green)] border-2 border-[#0d0d0d] transition-colors group-hover:bg-[var(--gecko-yellow)] shadow-sm"
+        >
+          <span
+            class="skew-x-[15deg] font-black title-font text-xs text-[#0d0d0d] tracking-wider"
+          >
+            {% t global.last_updated_at %}: {{ post.mdate | date: date_format }}
+          </span>
+        </div>
+        {% else %}
+        <div
+          class="inline-flex items-center px-4 py-1.5 skew-x-[-15deg] border-l-[6px] border-[var(--gecko-pink)] bg-[var(--gecko-green)] border-2 border-[#0d0d0d] transition-colors group-hover:bg-[var(--gecko-yellow)] shadow-sm"
+        >
+          <span
+            class="skew-x-[15deg] font-black title-font text-xs text-[#0d0d0d] tracking-wider"
+          >
+            {% t global.published_at %}: {{ post.date | date: date_format }}
+          </span>
+        </div>
+        {% endif %}
+      </div>
+
+      <h3
+        class="text-xl md:text-2xl font-bold title-font tracking-tight leading-tight flex-grow"
+      >
+        <a
+          class="text-[var(--text-color)] group-hover:text-[var(--gecko-green)] transition-colors inline-block w-full h-full"
+          href="{{ post.url | relative_url }}"
+        >
+          {{ post.title | escape }}
+        </a>
+      </h3>
+    </li>
+    {%- endfor -%}
+  </ul>
+  {%- endif -%}
 </div>

@@ -43,7 +43,7 @@ body {
 
 .site-title {
   @include relative-font-size(1.625);
-  font-family: "Anta", sans-serif; /* Alinhado com o novo tema */
+  font-family: "Anta", sans-serif;
   font-weight: 700;
   line-height: $base-line-height * $base-font-size * 2.25;
   letter-spacing: -1px;
@@ -97,25 +97,17 @@ body {
   z-index: 1; // Garante que o conteúdo fique acima do efeito do body
 }
 
-/* * Ajuste crucial para acomodar a Lista de Membros e Profile:
- * Removemos o fundo cinza fixo e as bordas rígidas do wrapper antigo.
- */
 .post-wrapper {
-  max-width: 1280px; /* max-w-7xl */
+  max-width: 1280px;
   margin-right: auto;
   margin-left: auto;
-  padding: 2rem 1rem;
-  background-color: transparent; /* Remove o fundo cinza antigo */
+  background-color: transparent;
 
   @include media-query($on-laptop) {
     padding: 1rem;
   }
 }
 
-/**
- * Custom Profiles & Team Styles
- * Removemos os estilos circulares antigos para aceitar o novo design Persona 5.
- */
 .member,
 .author {
   display: flex;
@@ -126,7 +118,6 @@ body {
 
 .member-picture,
 .author-picture {
-  /* Removemos o border-radius: 50% que forçava fotos redondas */
   border-radius: 0;
   object-fit: cover;
   border: 4px solid var(--border-ui);
@@ -160,7 +151,7 @@ a svg {
   fill: currentColor;
   transition: transform 0.2s, color 0.2s;
   &:hover {
-    fill: var(--gecko-green);
+    fill: var(--gecko-blue);
     transform: translateY(-2px);
   }
 }

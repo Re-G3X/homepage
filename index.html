@@ -52,11 +52,11 @@ ishome: true
     </div>
   </div>
 
-  <div class="mascot-area">
+  <div class="controller-area">
     <div
       class="absolute inset-0 bg-[var(--gecko-green)]/10 rounded-full blur-3xl scale-125 transition-colors"
     ></div>
-    <div class="joystick-wrapper center-mascot">
+    <div class="joystick-wrapper center-controller">
       <div class="joystick">
         <div class="animations">
           <aside class="left-hand">
@@ -158,6 +158,14 @@ ishome: true
         </li>
         {% endfor %}
       </ul>
+      <div class="mt-12 flex justify-end">
+        <a
+          href="{{ '/news' | relative_url }}"
+          class="bg-[var(--gecko-pink)] text-[#0d0d0d] px-10 py-3 p5-font font-black skew-x-[-12deg] hover:scale-110 transition-transform border-4 border-[var(--border-ui)] shadow-lg transition-colors"
+        >
+          <span class="inline-block skew-x-[12deg]">LER MAIS</span>
+        </a>
+      </div>
     </div>
   </section>
 </main>
@@ -168,14 +176,17 @@ ishome: true
       <div
         class="absolute -inset-1 md:-inset-2 bg-[var(--gecko-blue)] skew-x-[-12deg] -translate-x-2 translate-y-2 md:-translate-x-3 md:translate-y-3 opacity-90"
       ></div>
+
       <div
-        class="relative bg-[var(--gecko-green)] px-6 py-2 sm:px-8 sm:py-3 md:px-12 md:py-4 skew-x-[-12deg] border-4 border-[#0d0d0d] dark:border-[#fdfdfd] inline-block text-[#0d0d0d] title-font shadow-2xl overflow-hidden transition-colors duration-400"
+        class="relative bg-[var(--gecko-green)] px-6 py-2 sm:px-8 sm:py-3 md:px-12 md:py-4 skew-x-[-12deg] border-4 border-[--border-ui] inline-block text-[#0d0d0d] title-font shadow-2xl overflow-hidden transition-colors duration-400"
       >
-        <h2
-          class="text-4xl sm:text-5xl md:text-6xl tracking-tighter skew-x-[12deg] leading-none relative z-10 font-black"
+        <a href="{{ '/projects' | relative_url }}" class="nav-link">
+          <h2
+            class="text-4xl sm:text-5xl md:text-6xl tracking-tighter skew-x-[12deg] leading-none relative z-10 font-black"
+          >
+            {% t global.projects %}
+          </h2></a
         >
-          {% t global.projects %}
-        </h2>
       </div>
     </div>
   </div>
@@ -279,11 +290,6 @@ ishome: true
                   </div>
                   {% endfor %}
                 </div>
-                <p
-                  class="screen-select-label z-20 pointer-events-none font-bold"
-                >
-                  PRESS START
-                </p>
               </div>
             </div>
             <div class="joystick-group">
