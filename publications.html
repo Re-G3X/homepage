@@ -63,7 +63,6 @@ title: global.publications
   {% assign idx = 0 %} {% for t in type_order %} {% assign pubs_of_type =
   publications | where: "publication_type", t %} {% if pubs_of_type and
   pubs_of_type.size > 0 %}
-  <!-- Secção com data-type para filtro JS -->
   <div class="mb-10 pub-section animate-fade-in" data-type="{{ t }}">
     <div class="flex items-center mb-5">
       <h2
@@ -235,7 +234,6 @@ title: global.publications
     const sections = document.querySelectorAll(".pub-section");
     const buttons = document.querySelectorAll(".pub-filter-btn");
 
-    // Toggle Visibility of sections
     sections.forEach((sec) => {
       if (type === "all" || sec.dataset.type === type) {
         sec.style.display = "block";
@@ -245,7 +243,6 @@ title: global.publications
       }
     });
 
-    // Update Button Styles
     buttons.forEach((btn) => {
       if (btn.dataset.filter === type) {
         // Ativo
