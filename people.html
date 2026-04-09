@@ -47,7 +47,8 @@ title: global.people
       "current" %} {% for person in people %} {% if person.picture and
       person.picture != "" %} {% assign member_img = person.picture | prepend:
       site.baseurl_root %} {% else %} {% assign member_img =
-      "https://i.ibb.co/BV8hcf3N/icon-placeholder.png" %} {% endif %}
+      "/assets/img/members/icon-placeholder.png" | prepend: site.baseurl_root %}
+      {% endif %}
 
       <a
         href="{{ person.url | relative_url }}"

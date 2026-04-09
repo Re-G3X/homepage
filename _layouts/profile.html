@@ -4,7 +4,8 @@ layout: default
 
 {% if page.picture and page.picture != "" %} {% assign profile_img =
 page.picture | prepend: site.baseurl_root %} {% else %} {% assign profile_img =
-"https://i.ibb.co/BV8hcf3N/icon-placeholder.png" %} {% endif %}
+"/assets/img/members/icon-placeholder.png" | prepend: site.baseurl_root %} {%
+endif %}
 
 <style>
   .shadow-p5 {
