@@ -1,15 +1,15 @@
 # Claudio Fabiano Motta Toledo
 
-Sala: Bloco 4 ICMC
+Sala: Bloco 4 ICMC, São Carlos, SP.
 
 E-mail: claudio@icmc.usp.br
 
-Telefone: Oculto
+<!--Telefone: Oculto-->
 
 # Leonardo Tórtoro Pereira
 
-Sala: Oculto
+Sala: Bloco 1 DEMAC, Rio Claro, SP.
 
-E-mail: leonardo.t.pereira13@gmail.com
+E-mail: leonardo.t.pereira@unesp.br
 
-Telefone: Oculto
+<!--Telefone: Oculto-->
