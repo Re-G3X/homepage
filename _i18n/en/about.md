@@ -1,3 +1,54 @@
+<style>
+  h1, h2, h3, p, ul, ol {
+    color: #333;
+  }
+  
+  h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0.67em 0;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 0.3em;
+  }
+  
+  h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0.83em 0;
+  }
+  
+  h3 {
+    font-size: 1.17em;
+    font-weight: bold;
+    margin: 1em 0;
+  }
+  
+  p {
+    margin: 1em 0;
+    line-height: 1.5;
+  }
+  
+  ul, ol {
+    margin: 1em 0;
+    padding-left: 2em;
+  }
+  
+  li {
+    margin: 0.5em 0;
+  }
+  
+  /* Dark mode version */
+  @media (prefers-color-scheme: dark) {
+    h1, h2, h3, p, li {
+      color: #eee;
+    }
+    
+    h1 {
+      border-bottom-color: #555;
+    }
+  }
+</style>
+
 # About Re-G3X
 
 **Re-G3X (Research in Games, Gamification, Serious Games, and eXtended Reality)** is an inter-university research group formed through a partnership between ICMC-USP and IGCE-UNESP, along with collaborators from other institutions.
@@ -7,12 +58,9 @@
 We research and develop solutions in the areas of **Games, Gamification, Serious Games, and Extended Reality (XR)** , applying knowledge in:
 
 - **Procedural Content Generation**
-- **Artificial Intelligence** (especially evolutionary systems)
+- **Intelligent Agents**
 - **Software Engineering**
-- **Human-Computer Interaction** (focusing on usability and accessibility)
-
-
-Additionally, partners from areas such as **Nutrition, Biology, Medicine, and Education** enrich our research.
+- **Human-Computer Interaction**
 
 ## Research Highlights
 
@@ -39,13 +87,6 @@ We operate in an integrated manner using online tools such as:
 - **GitHub** – open source code and institutional website
 
 Biweekly meetings follow a format inspired by Scrum's *Daily Meeting*, promoting transparency and agility in development.
-
-## Next Steps
-
-- Formalization as a research group at **CNPq**
-- Expansion of national and international partnerships
-- Collaboration with companies and developers
-- Seeking funding for technological innovation and market transfer
 
 ---
 
