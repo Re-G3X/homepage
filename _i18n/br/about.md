@@ -1,3 +1,54 @@
+<style>
+  h1, h2, h3, p, ul, ol {
+    color: #333;
+  }
+  
+  h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0.67em 0;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 0.3em;
+  }
+  
+  h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0.83em 0;
+  }
+  
+  h3 {
+    font-size: 1.17em;
+    font-weight: bold;
+    margin: 1em 0;
+  }
+  
+  p {
+    margin: 1em 0;
+    line-height: 1.5;
+  }
+  
+  ul, ol {
+    margin: 1em 0;
+    padding-left: 2em;
+  }
+  
+  li {
+    margin: 0.5em 0;
+  }
+  
+  /* Versão para tema escuro */
+  @media (prefers-color-scheme: dark) {
+    h1, h2, h3, p, li {
+      color: #eee;
+    }
+    
+    h1 {
+      border-bottom-color: #555;
+    }
+  }
+</style>
+
 # Sobre o Re-G3X
 
 O **Re-G3X (Research in Games, Gamification, Serious Games, and eXtended Reality)** é um grupo de pesquisa interuniversitário, formado pela parceria entre o ICMC-USP e o IGCE-UNESP, além de colaboradores de outras instituições.
