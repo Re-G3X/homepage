@@ -12,7 +12,8 @@ hobbies:
   - Jogos
   - Livros
   - Filmes
-  - Programar
+  - Caminhada
+  - Programação
 games:
   - BeamNG.drive
   - Subnautica 2
